@@ -3,9 +3,45 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Newspaper from '@/components/Newspaper'
 
+import Login from '../views/Login'
+import PasswordReset from '../views/PasswordReset'
+import PasswordResetConfirm from '../views/PasswordResetConfirm'
+import Register from '../views/Register'
+import VerifyEmail from '../views/VerifyEmail'
+
+import store from '../store'
+
+const requireAuthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize')
+    .then(() => {
+      if (!store.getters['auth/isAuthenticated']) {
+        next('/login')
+      } else {
+        next()
+      }
+    })
+}
+
+const requireUnauthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize')
+    .then(() => {
+      if (store.getters['auth/isAuthenticated']) {
+        next('/')
+      } else {
+        next()
+      }
+    })
+}
+
+const redirectLogout = (to, from, next) => {
+  store.dispatch('auth/logout')
+    .then(() => next('/login'))
+}
+
 Vue.use(Router)
 
 export default new Router({
+  saveScrollPosition: true,
   routes: [
     {
       path: '/',
@@ -15,7 +51,37 @@ export default new Router({
     {
       path: '/newspaper',
       name: 'Newspaper',
-      component: Newspaper
+      component: Newspaper,
+      beforeEnter: requireAuthenticated
+    },
+    {
+      path: '/password_reset',
+      component: PasswordReset
+    },
+    {
+      path: '/password_reset/:uid/:token',
+      component: PasswordResetConfirm
+    },
+    {
+      path: '/register',
+      component: Register
+    },
+    {
+      path: '/register/:key',
+      component: VerifyEmail
+    },
+    {
+      path: '/login',
+      component: Login,
+      beforeEnter: requireUnauthenticated
+    },
+    {
+      path: '/logout',
+      beforeEnter: redirectLogout
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })
