@@ -42,6 +42,9 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <!-- <v-btn flat v-if="currentUser.username" v-text="currentUser.username"></v-btn> -->
+      </v-toolbar-items>
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>menu</v-icon>
       </v-btn>
@@ -82,23 +85,31 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Newspaper',
-        link: '/newspaper'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'LT-News'
-    }
-  },
-  name: 'App'
-}
+  import { mapGetters } from 'vuex'
+  console.log(mapGetters)
+  export default {
+    computed: {
+      ...mapGetters([
+        'currentUser',
+        'isAuthenticated'
+      ])
+    },
+    data () {
+      return {
+        clipped: false,
+        drawer: true,
+        fixed: false,
+        items: [{
+          icon: 'bubble_chart',
+          title: 'Newspaper',
+          link: '/newspaper'
+        }],
+        miniVariant: false,
+        right: true,
+        rightDrawer: false,
+        title: 'LT-News'
+      }
+    },
+    name: 'App'
+  }
 </script>

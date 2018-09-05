@@ -13,11 +13,13 @@ const TOKEN_STORAGE_KEY = 'TOKEN_STORAGE_KEY'
 
 const initialState = {
   authenticating: false,
+  username: '',
   error: false,
   token: null
 }
 
 const getters = {
+  currentUser: state => state.user,
   isAuthenticated: state => !!state.token
 }
 
@@ -26,7 +28,7 @@ const actions = {
     commit(LOGIN_BEGIN)
     return auth.login(username, password)
       .then(({ data }) => commit(SET_TOKEN, data.key))
-      .then(() => commit(LOGIN_SUCCESS))
+      .then(() => commit(LOGIN_SUCCESS, username))
       .catch(() => commit(LOGIN_FAILURE))
   },
   logout ({ commit }) {
@@ -54,13 +56,15 @@ const mutations = {
     state.authenticating = false
     state.error = true
   },
-  [LOGIN_SUCCESS] (state) {
+  [LOGIN_SUCCESS] (state, username) {
     state.authenticating = false
     state.error = false
+    state.username = username
   },
   [LOGOUT] (state) {
     state.authenticating = false
     state.error = false
+    state.username = ''
   },
   [SET_TOKEN] (state, token) {
     localStorage.setItem(TOKEN_STORAGE_KEY, token)
