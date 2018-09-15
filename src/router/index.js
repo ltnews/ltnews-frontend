@@ -8,7 +8,7 @@ import Register from '../views/Register'
 import VerifyEmail from '../views/VerifyEmail'
 
 import Home from '../views/Home'
-import Newspaper from '../views/Newspaper'
+import Newspapers from '../views/Newspapers'
 
 import store from '../store'
 
@@ -50,9 +50,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/newspaper',
-      name: 'Newspaper',
-      component: Newspaper,
+      path: '/newspapers',
+      name: 'Newspapers',
+      component: Newspapers,
       beforeEnter: requireAuthenticated
     },
     {

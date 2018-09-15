@@ -12,7 +12,7 @@
               <img src="https://randomuser.me/api/portraits/men/85.jpg">
             </v-list-tile-avatar>
             <v-list-tile-content>
-              <v-list-tile-title>John Leider</v-list-tile-title>
+              <v-list-tile-title v-text="currentUser"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -23,6 +23,7 @@
           v-for="(item, i) in items"
           :key="i"
           :to="item.link"
+          v-if="isAuthenticated===item.auth"
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -58,16 +59,37 @@
       return {
         drawer: null,
         items: [{
-          icon: 'bubble_chart',
-          title: 'Newspaper',
-          link: '/newspaper'
+          icon: 'view_list',
+          title: 'News',
+          link: '/news',
+          auth: true
+        }, {
+          icon: 'library_books',
+          title: 'Newspapers',
+          link: '/newspapers',
+          auth: true
+        }, {
+          icon: 'exit_to_app',
+          title: 'Logout',
+          link: '/logout',
+          auth: true
+        }, {
+          icon: 'system_update_alt',
+          title: 'Register',
+          link: '/register',
+          auth: false
+        }, {
+          icon: 'input',
+          title: 'Login',
+          link: '/login',
+          auth: false
         }],
         title: 'LT-News'
       }
     },
     name: 'Navbar',
     computed: mapGetters('auth', [
-      'isAuthenticated'
+      'isAuthenticated', 'currentUser'
     ])
   }
 </script>

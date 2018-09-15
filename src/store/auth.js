@@ -19,7 +19,7 @@ const initialState = {
 }
 
 const getters = {
-  currentUser: state => state.user,
+  currentUser: state => state.username,
   isAuthenticated: state => !!state.token
 }
 

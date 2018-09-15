@@ -3,8 +3,8 @@
     <navbar></navbar>
     <v-content>
       <router-view/>
-      <footbar></footbar>
     </v-content>
+    <footbar></footbar>
   </v-app>
 </template>
 

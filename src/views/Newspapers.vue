@@ -37,32 +37,7 @@
     name: 'Newspaper',
     data: function () {
       return {
-        sections: [
-          {
-            title: 'News',
-            items: [
-              {
-                title: 'El Pais',
-                avatar: 'https://ep01.epimg.net/iconos/v2.x/v2.1/recurso/elpais.png',
-                active: true
-              }, {
-                title: 'ABC',
-                avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Logo_abc.jpg/800px-Logo_abc.jpg',
-                active: false
-              }
-            ]
-          },
-          {
-            title: 'Sports',
-            items: [
-              {
-                title: 'Marca',
-                avatar: '',
-                active: true
-              }
-            ]
-          }
-        ]
+        sections: []
       }
     }
   }

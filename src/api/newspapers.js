@@ -1,10 +1,10 @@
 import session from './session'
 
 const ROOT = 'http://127.0.0.1:8000/'
-const ROOT_NEWSPAPER = ROOT + 'auth/'
+const ROOT_NEWSPAPER = ROOT + 'section/'
 
 export default {
-  login (username, password) {
-    return session.get(ROOT_NEWSPAPER + 'login/', { username, password })
+  section_get_all () {
+    return session.get(ROOT_NEWSPAPER)
   }
 }
