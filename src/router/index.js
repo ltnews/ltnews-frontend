@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Newspaper from '@/components/Newspaper'
 
 import Login from '../views/Login'
 import PasswordReset from '../views/PasswordReset'
 import PasswordResetConfirm from '../views/PasswordResetConfirm'
 import Register from '../views/Register'
 import VerifyEmail from '../views/VerifyEmail'
+
+import Home from '../views/Home'
+import Newspaper from '../views/Newspaper'
 
 import store from '../store'
 
