@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import api from '../api/section'
 
-import {SECTION_GET_ONE, SECTION_POST, SECTION_PUT, SECTION_RESET,
-  FETCH_END, RESET_STATE
+import {SECTION_GET_ONE, SECTION_POST, SECTION_PUT, SECTION_RESET, SECTION_DELETE,
+  FETCH_END_SECTION, RESET_STATE
 } from './types'
 
 const initialState = {
@@ -23,7 +23,7 @@ const getters = {
 const actions = {
   [SECTION_GET_ONE] (context, id) {
     return api.section_get_one(id)
-      .then(({ data }) => { context.commit(FETCH_END, data) })
+      .then(({ data }) => { context.commit(FETCH_END_SECTION, data) })
       .catch((error) => { throw new Error(error) })
   },
   [SECTION_POST] ({ state }) {
@@ -32,13 +32,16 @@ const actions = {
   [SECTION_PUT] ({ state }) {
     return api.section_put(state.section.id, state.section)
   },
+  [SECTION_DELETE] ({ state }) {
+    return api.section_delete(state.section.id)
+  },
   [SECTION_RESET] ({ commit }) {
     commit(RESET_STATE)
   }
 }
 
 const mutations = {
-  [FETCH_END] (state, section) {
+  [FETCH_END_SECTION] (state, section) {
     state.section = section
   },
   [RESET_STATE] () {

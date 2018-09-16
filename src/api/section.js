@@ -12,5 +12,8 @@ export default {
   },
   section_put (id, section) {
     return session.put(`./section/${id}/`, section)
+  },
+  section_delete (id) {
+    return session.delete(`./section/${id}/`)
   }
 }

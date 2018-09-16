@@ -3,7 +3,7 @@ import api from '../api/section'
 import {
   SECTION_GET_ALL,
   FETCH_START,
-  FETCH_END
+  FETCH_END_SECTIONS
 } from './types'
 
 const state = {
@@ -22,7 +22,7 @@ const actions = {
   [SECTION_GET_ALL] ({ commit }) {
     commit(FETCH_START)
     return api.section_get_all()
-      .then(({ data }) => { commit(FETCH_END, data) })
+      .then(({ data }) => { commit(FETCH_END_SECTIONS, data) })
       .catch((error) => { throw new Error(error) })
   }
 }
@@ -31,7 +31,7 @@ const mutations = {
   [FETCH_START] (state) {
     state.loading = true
   },
-  [FETCH_END] (state, sections) {
+  [FETCH_END_SECTIONS] (state, sections) {
     state.sections = sections
     state.loading = false
   }
