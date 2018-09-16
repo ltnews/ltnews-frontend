@@ -20,6 +20,9 @@
           <v-icon color="accent">delete</v-icon>
         </v-list-tile-action>
       </v-list-tile>
+      <v-list-tile v-if="feeds.length === 0">
+        <v-list-tile-title>Add new feed</v-list-tile-title>
+      </v-list-tile>
     </v-list>
   </v-card>
 </template>

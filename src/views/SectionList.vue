@@ -16,6 +16,17 @@
           :feeds="section.feeds">
         </card-list-feed>
       </v-flex>
+
+      <v-btn
+        absolute
+        fab
+        top
+        right
+        color="accent"
+        :to="{name: 'SectionEdit'}"
+      >
+        <v-icon>add</v-icon>
+      </v-btn>
     </v-container>
   </v-flex>
 </template>

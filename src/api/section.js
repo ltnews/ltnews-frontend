@@ -2,10 +2,10 @@ import session from './session'
 
 export default {
   section_get_all () {
-    return session.get(`./section`)
+    return session.get(`./section/`)
   },
   sections_post (section) {
-    return session.post(`./section`, section)
+    return session.post(`./section/`, section)
   },
   section_get_one (id) {
     return session.get(`./section/${id}/`)

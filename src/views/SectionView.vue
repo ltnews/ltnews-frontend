@@ -16,7 +16,7 @@
         top
         right
         color="accent"
-        :to="{name: 'SectionEdit', param: {id: sectionDetailSection.id}}"
+        :to="{name: 'SectionEdit', params: {id: sectionDetailSection.id}}"
       >
         <v-icon>edit</v-icon>
       </v-btn>

@@ -42,12 +42,12 @@
     async beforeRouteEnter (to, from, next) {
       if (to.params.id !== undefined) {
         await store.dispatch(SECTION_GET_ONE, to.params.id)
-        return next()
       }
+      return next()
     },
     async beforeRouteUpdate (to, from, next) {
       await store.dispatch(SECTION_RESET)
-      return next
+      return next()
     },
     computed: {
       ...mapGetters([
@@ -56,7 +56,7 @@
     },
     methods: {
       submit (id) {
-        let action = id !== 0 ? SECTION_PUT : SECTION_POST
+        let action = id ? SECTION_PUT : SECTION_POST
         this.$store.dispatch(action)
           .then(({data}) => {
             this.$router.push({name: 'SectionView', params: {id: data.id}})

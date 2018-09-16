@@ -89,19 +89,13 @@ export default new Router({
       beforeEnter: requireAuthenticated
     },
     {
-      path: '/section/create',
-      name: 'SectionCreate',
-      component: SectionEdit,
-      beforeEnter: requireAuthenticated
-    },
-    {
       path: '/section/view/:id',
       name: 'SectionView',
       component: SectionView,
       beforeEnter: requireAuthenticated
     },
     {
-      path: '/section/edit/:id',
+      path: '/section/edit/:id?',
       name: 'SectionEdit',
       component: SectionEdit,
       beforeEnter: requireAuthenticated
