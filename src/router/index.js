@@ -9,7 +9,8 @@ import VerifyEmail from '../views/VerifyEmail'
 
 import Home from '../views/Home'
 import SectionList from '../views/SectionList'
-import SectionDetail from '../views/SectionDetail'
+import SectionView from '../views/SectionView'
+import SectionEdit from '../views/SectionEdit'
 
 import store from '../store'
 
@@ -52,39 +53,57 @@ export default new Router({
     },
     {
       path: '/password_reset',
+      name: 'PasswordReset',
       component: PasswordReset
     },
     {
       path: '/password_reset/:uid/:token',
+      name: 'PasswordResetConfirm',
       component: PasswordResetConfirm
     },
     {
       path: '/register',
+      name: 'PasswordResetConfirm',
       component: Register
     },
     {
       path: '/register/:key',
+      name: 'VerifyEmail',
       component: VerifyEmail
     },
     {
       path: '/login',
+      name: 'Login',
       component: Login,
       beforeEnter: requireUnauthenticated
     },
     {
       path: '/logout',
+      name: 'Logout',
       beforeEnter: redirectLogout
     },
     {
-      path: '/newspapers',
+      path: '/section/list',
       name: 'SectionList',
       component: SectionList,
       beforeEnter: requireAuthenticated
     },
     {
-      path: '/newspapers/section/:id',
-      name: 'SectionDetail',
-      component: SectionDetail,
+      path: '/section/create',
+      name: 'SectionCreate',
+      component: SectionEdit,
+      beforeEnter: requireAuthenticated
+    },
+    {
+      path: '/section/view/:id',
+      name: 'SectionView',
+      component: SectionView,
+      beforeEnter: requireAuthenticated
+    },
+    {
+      path: '/section/edit/:id',
+      name: 'SectionEdit',
+      component: SectionEdit,
       beforeEnter: requireAuthenticated
     },
     {

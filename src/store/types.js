@@ -24,6 +24,10 @@ export const REMOVE_TOKEN = 'REMOVE_TOKEN'
 
 export const FETCH_START = 'FETCH_START'
 export const FETCH_END = 'FETCH_END'
+export const RESET_STATE = 'RESET_STATE'
 
 export const SECTION_GET_ALL = 'SECTION_GET_ALL'
 export const SECTION_GET_ONE = 'SECTION_GET_ONE'
+export const SECTION_POST = 'SECTION_POST'
+export const SECTION_PUT = 'SECTION_PUT'
+export const SECTION_RESET = 'SECTION_RESET'

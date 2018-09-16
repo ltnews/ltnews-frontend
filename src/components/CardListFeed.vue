@@ -29,8 +29,8 @@
     name: 'CardListFeed',
     props: {
       title: {type: String, required: true},
-      link: {type: String, required: false, default: '#'},
-      feeds: {type: Object, required: true}
+      link: {type: Object, required: false, default: '#'},
+      feeds: {type: Array, required: true}
     }
   }
 </script>

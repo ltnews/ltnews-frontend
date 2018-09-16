@@ -12,7 +12,7 @@
       >
         <card-list-feed
           :title="section.title"
-          :link="{name: 'SectionDetail', params: {id: section.id}}"
+          :link="{name: 'SectionView', params: {id: section.id}}"
           :feeds="section.feeds">
         </card-list-feed>
       </v-flex>

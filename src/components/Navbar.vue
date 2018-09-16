@@ -61,27 +61,27 @@
         items: [{
           icon: 'view_list',
           title: 'News',
-          link: '/news',
+          link: {name: 'ItemList'},
           auth: true
         }, {
           icon: 'library_books',
           title: 'Newspapers',
-          link: '/newspapers',
+          link: {name: 'SectionList'},
           auth: true
         }, {
           icon: 'exit_to_app',
           title: 'Logout',
-          link: '/logout',
+          link: {name: 'Logout'},
           auth: true
         }, {
           icon: 'system_update_alt',
           title: 'Register',
-          link: '/register',
+          link: {name: 'Register'},
           auth: false
         }, {
           icon: 'input',
           title: 'Login',
-          link: '/login',
+          link: {name: 'Login'},
           auth: false
         }],
         title: 'LT-News'
