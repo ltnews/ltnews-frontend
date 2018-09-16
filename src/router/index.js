@@ -8,7 +8,8 @@ import Register from '../views/Register'
 import VerifyEmail from '../views/VerifyEmail'
 
 import Home from '../views/Home'
-import Newspapers from '../views/Newspapers'
+import SectionList from '../views/SectionList'
+import SectionDetail from '../views/SectionDetail'
 
 import store from '../store'
 
@@ -50,12 +51,6 @@ export default new Router({
       component: Home
     },
     {
-      path: '/newspapers',
-      name: 'Newspapers',
-      component: Newspapers,
-      beforeEnter: requireAuthenticated
-    },
-    {
       path: '/password_reset',
       component: PasswordReset
     },
@@ -79,6 +74,18 @@ export default new Router({
     {
       path: '/logout',
       beforeEnter: redirectLogout
+    },
+    {
+      path: '/newspapers',
+      name: 'SectionList',
+      component: SectionList,
+      beforeEnter: requireAuthenticated
+    },
+    {
+      path: '/newspapers/section/:id',
+      name: 'SectionDetail',
+      component: SectionDetail,
+      beforeEnter: requireAuthenticated
     },
     {
       path: '*',

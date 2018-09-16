@@ -1,8 +1,10 @@
 <template>
   <v-app id="app">
     <navbar></navbar>
-    <v-content>
-      <router-view/>
+    <v-content fluid>
+      <div class="layout">
+        <router-view/>
+      </div>
     </v-content>
     <footbar></footbar>
   </v-app>

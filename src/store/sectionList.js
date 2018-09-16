@@ -1,4 +1,4 @@
-import api from '../api/newspapers'
+import api from '../api/section'
 
 import {
   SECTION_GET_ALL,
@@ -13,9 +13,9 @@ const state = {
 }
 
 const getters = {
-  newspapersLoading: state => state.loading,
-  newspapersSections: state => state.sections,
-  newspapersSectionsCount: state => state.sectionsCount
+  sectionListLoading: state => state.loading,
+  sectionListSections: state => state.sections,
+  sectionListSectionsCount: state => state.sectionsCount
 }
 
 const actions = {
