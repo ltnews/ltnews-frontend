@@ -1,7 +1,6 @@
 import session from './session'
 
-const ROOT = 'http://127.0.0.1:8000/'
-const ROOT_AUTH = ROOT + 'auth/'
+const ROOT_AUTH = 'auth/'
 
 export default {
   login (username, password) {
@@ -11,7 +10,7 @@ export default {
     return session.post(ROOT_AUTH + 'logout/', {})
   },
   createAccount (username, password1, password2, email) {
-    return session.post(ROOT + 'registration/', { username, password1, password2, email })
+    return session.post('registration/', { username, password1, password2, email })
   },
   changeAccountPassword (password1, password2) {
     return session.post(ROOT_AUTH + 'password/change/', { password1, password2 })
@@ -29,6 +28,6 @@ export default {
     return session.patch(ROOT_AUTH + 'user/', data)
   },
   verifyAccountEmail (key) {
-    return session.post(ROOT + 'registration/verify-email/', { key })
+    return session.post('registration/verify-email/', { key })
   }
 }
