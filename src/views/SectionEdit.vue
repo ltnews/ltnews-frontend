@@ -52,13 +52,17 @@
       }
     },
     async beforeRouteEnter (to, from, next) {
-      console.log(to.params)
+      await store.dispatch(SECTION_RESET)
       if (to.params.id !== undefined) {
         await store.dispatch(SECTION_GET_ONE, to.params.id)
       }
       return next()
     },
     async beforeRouteUpdate (to, from, next) {
+      await store.dispatch(SECTION_RESET)
+      return next()
+    },
+    async beforeRouteLeave (to, from, next) {
       await store.dispatch(SECTION_RESET)
       return next()
     },
