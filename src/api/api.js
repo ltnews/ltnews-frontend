@@ -4,12 +4,17 @@ const SECTION = 'section'
 const FEED = 'feed'
 const ITEM = 'item'
 
-function makeURL (entity, id) {
-  if (id === undefined) {
-    return `./${entity}/`
-  } else {
-    return `./${SECTION}/${id}/`
+function makeURL (entity, id, other) {
+  let url = `./${entity}/`
+
+  if (id !== undefined) {
+    url += `${id}/`
   }
+  if (other !== undefined) {
+    url += `${other}/`
+  }
+
+  return url
 }
 
 export default {
@@ -30,6 +35,12 @@ export default {
   },
   feed_get_one (id) {
     return session.get(makeURL(FEED, id))
+  },
+  feed_get_items (id) {
+    return session.get(makeURL(FEED, id, 'items'))
+  },
+  feed_delete (id) {
+    return session.delete(makeURL(FEED, id))
   },
   item_get_all () {
     return session.get(makeURL(ITEM))

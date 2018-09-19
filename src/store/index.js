@@ -7,6 +7,7 @@ import password from './password'
 import signup from './signup'
 import sectionList from './sectionList'
 import sectionDetail from './sectionDetail'
+import feedDetail from './feedDetail'
 import itemList from './itemList'
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     signup,
     sectionList,
     sectionDetail,
+    feedDetail,
     itemList
   },
   strict: debug,

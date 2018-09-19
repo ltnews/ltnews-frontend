@@ -9,7 +9,7 @@
         v-for="item in feeds"
         :key="item.title"
         avatar
-        @click="">
+        :to="{name: 'FeedView', params: {id: item.id}}">
         <v-list-tile-avatar>
           <img :src="item.logo">
         </v-list-tile-avatar>

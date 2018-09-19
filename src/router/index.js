@@ -11,6 +11,7 @@ import Home from '../views/Home'
 import SectionList from '../views/SectionList'
 import SectionView from '../views/SectionView'
 import SectionEdit from '../views/SectionEdit'
+import FeedView from '../views/FeedView'
 import ItemList from '../views/ItemList'
 
 import store from '../store'
@@ -100,6 +101,11 @@ export default new Router({
       name: 'SectionEdit',
       component: SectionEdit,
       beforeEnter: requireAuthenticated
+    },
+    {
+      path: '/feed/view/:id',
+      name: 'FeedView',
+      component: FeedView
     },
     {
       path: '/item/list',
