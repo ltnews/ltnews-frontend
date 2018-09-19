@@ -11,6 +11,7 @@ import Home from '../views/Home'
 import SectionList from '../views/SectionList'
 import SectionView from '../views/SectionView'
 import SectionEdit from '../views/SectionEdit'
+import ItemList from '../views/ItemList'
 
 import store from '../store'
 
@@ -98,6 +99,12 @@ export default new Router({
       path: '/section/edit/:id?',
       name: 'SectionEdit',
       component: SectionEdit,
+      beforeEnter: requireAuthenticated
+    },
+    {
+      path: '/item/list',
+      name: 'ItemList',
+      component: ItemList,
       beforeEnter: requireAuthenticated
     },
     {

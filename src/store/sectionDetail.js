@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import api from '../api/section'
+import api from '../api/api'
 
 import {
   SECTION_GET_ONE, SECTION_POST, SECTION_PUT, SECTION_RESET, SECTION_DELETE,
-  FETCH_END_SECTION, RESET_STATE
+  FETCH_END_SECTION, RESET_STATE_SECTION
 } from './types'
 
 function getInitialState () {
@@ -43,7 +43,7 @@ const actions = {
     return api.section_delete(state.section.id)
   },
   [SECTION_RESET] ({commit}) {
-    commit(RESET_STATE)
+    commit(RESET_STATE_SECTION)
   }
 }
 
@@ -51,7 +51,7 @@ const mutations = {
   [FETCH_END_SECTION] (state, section) {
     state.section = section
   },
-  [RESET_STATE] () {
+  [RESET_STATE_SECTION] () {
     let initialState = getInitialState()
     for (let f in state) {
       Vue.set(state, f, initialState[f])

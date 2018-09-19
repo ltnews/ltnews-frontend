@@ -1,8 +1,8 @@
-import api from '../api/section'
+import api from '../api/api'
 
 import {
   SECTION_GET_ALL,
-  FETCH_START,
+  FETCH_START_SECTIONS,
   FETCH_END_SECTIONS
 } from './types'
 
@@ -20,7 +20,7 @@ const getters = {
 
 const actions = {
   [SECTION_GET_ALL] ({ commit }) {
-    commit(FETCH_START)
+    commit(FETCH_START_SECTIONS)
     return api.section_get_all()
       .then(({ data }) => { commit(FETCH_END_SECTIONS, data) })
       .catch((error) => { throw new Error(error) })
@@ -28,7 +28,7 @@ const actions = {
 }
 
 const mutations = {
-  [FETCH_START] (state) {
+  [FETCH_START_SECTIONS] (state) {
     state.loading = true
   },
   [FETCH_END_SECTIONS] (state, sections) {
