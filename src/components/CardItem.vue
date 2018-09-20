@@ -6,7 +6,7 @@
       <div>
         <span class="grey--text caption" v-text="item.pubDate"></span>
         <h3 class="headline" v-text="item.title"></h3>
-        <div>{{ item.article | truncate }}</div>
+        <div class="text-xs-justify">{{ item.article | truncate }}</div>
       </div>
     </v-card-title>
   </v-card>
@@ -24,7 +24,7 @@
         if (text.length <= length) {
           return text
         } else {
-          return text.substring(0, length).replace(/\w+$/, '')
+          return text.substring(0, length).replace(/\w+$/, '').concat('...')
         }
       }
     }
