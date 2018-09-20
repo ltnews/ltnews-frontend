@@ -13,6 +13,7 @@ import SectionView from '../views/SectionView'
 import SectionEdit from '../views/SectionEdit'
 import FeedView from '../views/FeedView'
 import ItemList from '../views/ItemList'
+import ItemView from '../views/ItemView'
 
 import store from '../store'
 
@@ -51,71 +52,90 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      props: true
     },
     {
       path: '/password_reset',
       name: 'PasswordReset',
-      component: PasswordReset
+      component: PasswordReset,
+      props: true
     },
     {
       path: '/password_reset/:uid/:token',
       name: 'PasswordResetConfirm',
-      component: PasswordResetConfirm
+      component: PasswordResetConfirm,
+      props: true
     },
     {
       path: '/register',
       name: 'PasswordResetConfirm',
-      component: Register
+      component: Register,
+      props: true
     },
     {
       path: '/register/:key',
       name: 'VerifyEmail',
-      component: VerifyEmail
+      component: VerifyEmail,
+      props: true
     },
     {
       path: '/login',
       name: 'Login',
       component: Login,
-      beforeEnter: requireUnauthenticated
+      beforeEnter: requireUnauthenticated,
+      props: true
     },
     {
       path: '/logout',
       name: 'Logout',
-      beforeEnter: redirectLogout
+      beforeEnter: redirectLogout,
+      props: true
     },
     {
       path: '/section/list',
       name: 'SectionList',
       component: SectionList,
-      beforeEnter: requireAuthenticated
+      beforeEnter: requireAuthenticated,
+      props: true
     },
     {
       path: '/section/view/:id',
       name: 'SectionView',
       component: SectionView,
-      beforeEnter: requireAuthenticated
+      beforeEnter: requireAuthenticated,
+      props: true
     },
     {
       path: '/section/edit/:id?',
       name: 'SectionEdit',
       component: SectionEdit,
-      beforeEnter: requireAuthenticated
+      beforeEnter: requireAuthenticated,
+      props: true
     },
     {
       path: '/feed/view/:id',
       name: 'FeedView',
-      component: FeedView
+      component: FeedView,
+      props: true
     },
     {
       path: '/item/list',
       name: 'ItemList',
       component: ItemList,
-      beforeEnter: requireAuthenticated
+      beforeEnter: requireAuthenticated,
+      props: true
+    },
+    {
+      path: '/item/view/:id',
+      name: 'ItemView',
+      component: ItemView,
+      props: true
     },
     {
       path: '*',
-      redirect: '/'
+      redirect: '/',
+      props: true
     }
   ]
 })

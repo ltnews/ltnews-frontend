@@ -44,5 +44,11 @@ export default {
   },
   item_get_all () {
     return session.get(makeURL(ITEM))
+  },
+  item_get_one (id) {
+    return session.get(makeURL(ITEM, id))
+  },
+  comment_get_all (id) {
+    return session.get(makeURL(ITEM, id, 'comments'))
   }
 }

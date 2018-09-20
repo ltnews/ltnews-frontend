@@ -9,6 +9,7 @@ import sectionList from './sectionList'
 import sectionDetail from './sectionDetail'
 import feedDetail from './feedDetail'
 import itemList from './itemList'
+import itemDetail from './itemDetail'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     sectionList,
     sectionDetail,
     feedDetail,
-    itemList
+    itemList,
+    itemDetail
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

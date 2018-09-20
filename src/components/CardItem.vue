@@ -1,5 +1,5 @@
 <template>
-  <v-card  height="100%">
+  <v-card  height="100%" :to="{name: 'ItemView', params: {id: item.id}}">
     <v-img :src="item.image"></v-img>
 
     <v-card-title primary-title>
