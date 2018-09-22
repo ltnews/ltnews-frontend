@@ -5,19 +5,18 @@
       fixed
       app
     >
-      <v-toolbar flat class="transparent" v-if="isAuthenticated">
-        <v-list class="pa-0">
-          <v-list-tile avatar>
-            <v-list-tile-avatar>
-              <img src="https://randomuser.me/api/portraits/men/85.jpg">
-            </v-list-tile-avatar>
-            <v-list-tile-content>
-              <v-list-tile-title v-text="currentUser"></v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-        <v-divider></v-divider>
-      </v-toolbar>
+      <v-img :aspect-ratio="16/9" src="static/newspaper.jpg"  v-if="isAuthenticated">
+        <v-layout pa-2 column fill-height class="lightbox white--text">
+          <v-spacer></v-spacer>
+          <v-flex shrink>
+
+            <v-avatar><img src="https://randomuser.me/api/portraits/men/85.jpg"></v-avatar>
+            <div class="subheading">Jonathan Lee</div>
+            <div class="body-1">heyfromjonathan@gmail.com</div>
+          </v-flex>
+        </v-layout>
+      </v-img>
+
       <v-list class="pt-0" dense>
         <v-list-tile
           v-for="(item, i) in items"

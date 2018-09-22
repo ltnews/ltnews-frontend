@@ -13,13 +13,11 @@ const TOKEN_STORAGE_KEY = 'TOKEN_STORAGE_KEY'
 
 const initialState = {
   authenticating: false,
-  username: '',
   error: false,
   token: null
 }
 
 const getters = {
-  currentUser: state => state.username,
   isAuthenticated: state => !!state.token
 }
 
@@ -59,12 +57,10 @@ const mutations = {
   [LOGIN_SUCCESS] (state, username) {
     state.authenticating = false
     state.error = false
-    state.username = username
   },
   [LOGOUT] (state) {
     state.authenticating = false
     state.error = false
-    state.username = ''
   },
   [SET_TOKEN] (state, token) {
     localStorage.setItem(TOKEN_STORAGE_KEY, token)
