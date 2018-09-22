@@ -44,12 +44,13 @@
 
         <v-textarea
           append-icon="send"
-          :append-icon-cb=submit
+          @click:append=submit
           box
-          label="Label"
+          label="Your comment"
           auto-grow
-          value="Holaaa"
+          v-model="itemDetailComment.description"
         ></v-textarea>
+
 
       </v-container>
     </v-flex>
@@ -59,10 +60,15 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {ITEM_GET_ONE, ITEM_GET_COMMENTS} from '../store/types'
+  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST} from '../store/types'
 
   export default {
     name: 'ItemView',
+    data () {
+      return {
+        errors: ''
+      }
+    },
     beforeRouteEnter (to, from, next) {
       Promise.all([
         store.dispatch(ITEM_GET_ONE, to.params.id),
@@ -74,12 +80,18 @@
     computed: {
       ...mapGetters([
         'itemDetailItem',
-        'itemDetailComments'
+        'itemDetailComments',
+        'itemDetailComment'
       ])
     },
     methods: {
       submit: function () {
-
+        this.$store.dispatch(COMMENT_POST)
+          .then(({data}) => {
+            this.errors = ''
+          }).catch(({response}) => {
+            this.errors = `${response.status}: ${response.statusText}`
+          })
       }
     }
   }

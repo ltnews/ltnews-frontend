@@ -2,15 +2,18 @@ import Vue from 'vue'
 import api from '../api/api'
 
 import {
-  ITEM_GET_ONE, ITEM_GET_COMMENTS,
-  FETCH_END_ITEM, FETCH_START_COMMENTS, FETCH_END_COMMENTS, RESET_STATE_ITEM
+  ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST,
+  FETCH_END_ITEM, FETCH_START_COMMENTS, FETCH_END_COMMENTS, RESET_STATE_ITEM, RESET_STATE_COMMENT
 } from './types'
 
 function getInitialState () {
   return {
     item: {},
     comments: [],
-    loading: false
+    loading: false,
+    comment: {
+      description: ''
+    }
   }
 }
 
@@ -18,7 +21,8 @@ export const state = getInitialState()
 
 const getters = {
   itemDetailItem: state => state.item,
-  itemDetailComments: state => state.comments
+  itemDetailComments: state => state.comments,
+  itemDetailComment: state => state.comment
 }
 
 const actions = {
@@ -36,6 +40,11 @@ const actions = {
     context.commit(FETCH_START_COMMENTS)
     return api.comment_get_all(id)
       .then(({ data }) => { context.commit(FETCH_END_COMMENTS, data) })
+      .catch((error) => { throw new Error(error) })
+  },
+  [COMMENT_POST] ({commit, state}) {
+    return api.comment_post(state.item.id, state.comment)
+      .then(({ data }) => { commit(RESET_STATE_COMMENT, data) })
       .catch((error) => { throw new Error(error) })
   }
 }
@@ -56,6 +65,10 @@ const mutations = {
   [FETCH_END_COMMENTS] (state, comments) {
     state.comments = comments
     state.loading = false
+  },
+  [RESET_STATE_COMMENT] (state, comment) {
+    state.comments.push(comment)
+    Vue.set(state, 'comment', getInitialState()['comment'])
   }
 }
 

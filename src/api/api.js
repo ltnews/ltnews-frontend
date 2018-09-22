@@ -50,5 +50,8 @@ export default {
   },
   comment_get_all (id) {
     return session.get(makeURL(ITEM, id, 'comments'))
+  },
+  comment_post (id, comment) {
+    return session.post(makeURL(ITEM, id, 'comments'), comment)
   }
 }
