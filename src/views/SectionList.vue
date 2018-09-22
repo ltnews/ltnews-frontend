@@ -1,5 +1,13 @@
 <template>
   <v-flex xs12>
+    <v-toolbar dense color="secondary">
+      <v-spacer></v-spacer>
+
+      <v-toolbar-items>
+        <v-btn dark flat :to="{name: 'SectionEdit'}">Create</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+
     <v-container grid-list-xl>
       <page-head
         title="Newspapers"
@@ -16,17 +24,6 @@
           :feeds="section.feeds">
         </card-list-feed>
       </v-flex>
-
-      <v-btn
-        absolute
-        fab
-        top
-        right
-        color="accent"
-        :to="{name: 'SectionEdit'}"
-      >
-        <v-icon>add</v-icon>
-      </v-btn>
     </v-container>
   </v-flex>
 </template>

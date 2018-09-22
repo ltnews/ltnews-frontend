@@ -16,18 +16,6 @@
           <v-btn @click="clear">clear</v-btn>
         </v-form>
       </v-flex>
-
-      <v-btn
-        absolute
-        fab
-        top
-        right
-        color="error"
-        v-if="sectionDetailSection.id"
-        @click="remove(sectionDetailSection.id)"
-      >
-        <v-icon>delete</v-icon>
-      </v-btn>
     </v-container>
   </v-flex>
 </template>
@@ -35,7 +23,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {SECTION_GET_ONE, SECTION_POST, SECTION_PUT, SECTION_RESET, SECTION_DELETE} from '../store/types'
+  import {SECTION_GET_ONE, SECTION_POST, SECTION_PUT, SECTION_RESET} from '../store/types'
   import PageHead from '../components/PageHead'
 
   export default {
@@ -84,14 +72,6 @@
       clear () {
         this.$refs.form.reset()
         this.errors = ''
-      },
-      remove (id) {
-        this.$store.dispatch(SECTION_DELETE)
-          .then(({data}) => {
-            this.$router.push({name: 'SectionList'})
-          }).catch(({response}) => {
-            this.errors = `${response.status}: ${response.statusText}`
-          })
       }
     }
   }

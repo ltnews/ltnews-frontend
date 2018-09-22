@@ -1,5 +1,13 @@
 <template>
   <v-flex xs12>
+    <v-toolbar dense color="secondary">
+      <v-spacer></v-spacer>
+
+      <v-toolbar-items>
+        <v-btn dark flat :to="{name: 'SectionEdit'}">Delete</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+
     <v-container grid-list-xl>
       <page-head
         :title="feedDetailFeed.title"
@@ -15,16 +23,6 @@
           </v-flex>
         </v-layout>
       </v-container>
-
-      <v-btn
-        absolute
-        fab
-        top
-        right
-        color="error"
-      >
-        <v-icon>delete</v-icon>
-      </v-btn>
     </v-container>
   </v-flex>
 </template>

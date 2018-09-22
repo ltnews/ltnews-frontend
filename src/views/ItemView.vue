@@ -1,5 +1,15 @@
 <template>
   <v-flex xs12>
+    <v-toolbar dense color="secondary">
+      <v-spacer></v-spacer>
+
+      <v-toolbar-items>
+        <v-btn dark flat color="accent" @click="liked()"><v-icon>thumb_up</v-icon></v-btn>
+        <v-btn dark flat color="accent" @click="web(itemDetailItem.link)"><v-icon>link</v-icon></v-btn>
+        <v-btn dark flat color="accent" @click="saved()"><v-icon>save</v-icon></v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+
     <v-parallax :src="itemDetailItem.image">
       <v-layout
         align-center
@@ -15,25 +25,6 @@
       <v-container grid-list-md>
         <div class="text-xs-justify" v-html="itemDetailItem.article"></div>
         <p class="text-xs-right" v-text="itemDetailItem.creator"></p>
-        <div class="text-xs-center">
-          <v-btn color="accent" @click="liked()">
-            <v-icon>thumb_up</v-icon>
-          </v-btn>
-          <v-btn color="accent" @click="web(itemDetailItem.link)">
-            <v-icon>link</v-icon>
-          </v-btn>
-        </div>
-
-        <v-btn
-          absolute
-          fab
-          top
-          right
-          color="accent"
-          @click="saved()"
-        >
-          <v-icon>save</v-icon>
-        </v-btn>
 
         <br>
         <v-divider></v-divider>
