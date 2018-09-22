@@ -53,6 +53,10 @@ export default {
   item_get_one (id) {
     return session.get(makeURL(ITEM, id))
   },
+  item_post (id, status) {
+    // TODO: would be PUT
+    return session.post(makeURL(ITEM, id), status)
+  },
   comment_get_all (id) {
     return session.get(makeURL(ITEM, id, plural(COMMENT)))
   },

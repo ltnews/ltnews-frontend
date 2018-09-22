@@ -16,10 +16,24 @@
         <div class="text-xs-justify" v-html="itemDetailItem.article"></div>
         <p class="text-xs-right" v-text="itemDetailItem.creator"></p>
         <div class="text-xs-center">
-          <v-btn color="accent">
+          <v-btn color="accent" @click="liked()">
             <v-icon>thumb_up</v-icon>
           </v-btn>
+          <v-btn color="accent" @click="web(itemDetailItem.link)">
+            <v-icon>link</v-icon>
+          </v-btn>
         </div>
+
+        <v-btn
+          absolute
+          fab
+          top
+          right
+          color="accent"
+          @click="saved()"
+        >
+          <v-icon>save</v-icon>
+        </v-btn>
 
         <br>
         <v-divider></v-divider>
@@ -63,7 +77,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE} from '../store/types'
+  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE, ITEM_POST} from '../store/types'
 
   export default {
     name: 'ItemView',
@@ -84,7 +98,8 @@
       ...mapGetters([
         'itemDetailItem',
         'itemDetailComments',
-        'itemDetailComment'
+        'itemDetailComment',
+        'itemDetailStatus'
       ])
     },
     methods: {
@@ -100,6 +115,30 @@
         this.$store.dispatch(COMMENT_DELETE, [id, index])
           .then(({data}) => {
             this.errors = ''
+          }).catch(({response}) => {
+            this.errors = `${response.status}: ${response.statusText}`
+          })
+      },
+      saved: function () {
+        this.$store.dispatch(ITEM_POST, ['save', true])
+          .then(({data}) => {
+            this.errors = ''
+          }).catch(({response}) => {
+            this.errors = `${response.status}: ${response.statusText}`
+          })
+      },
+      liked: function () {
+        this.$store.dispatch(ITEM_POST, ['like', true])
+          .then(({data}) => {
+            this.errors = ''
+          }).catch(({response}) => {
+            this.errors = `${response.status}: ${response.statusText}`
+          })
+      },
+      web: function (link) {
+        this.$store.dispatch(ITEM_POST, ['web', true])
+          .then(({data}) => {
+            window.location.href = link
           }).catch(({response}) => {
             this.errors = `${response.status}: ${response.statusText}`
           })

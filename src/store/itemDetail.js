@@ -2,8 +2,8 @@ import Vue from 'vue'
 import api from '../api/api'
 
 import {
-  ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE,
-  FETCH_END_ITEM, FETCH_START_COMMENTS, FETCH_END_COMMENTS, RESET_STATE_ITEM, ADD_COMMENT, REMOVE_COMMENT
+  ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE, ITEM_POST,
+  FETCH_END_ITEM, FETCH_START_COMMENTS, FETCH_END_COMMENTS, RESET_STATE_ITEM, ADD_COMMENT, REMOVE_COMMENT, SET_ITEM
 } from './types'
 
 function getInitialState () {
@@ -11,6 +11,11 @@ function getInitialState () {
     item: {},
     comments: [],
     loading: false,
+    status: {
+      like: false,
+      save: false,
+      web: false
+    },
     comment: {
       description: ''
     }
@@ -21,6 +26,7 @@ export const state = getInitialState()
 
 const getters = {
   itemDetailItem: state => state.item,
+  itemDetailStatus: state => state.status,
   itemDetailComments: state => state.comments,
   itemDetailComment: state => state.comment
 }
@@ -35,6 +41,10 @@ const actions = {
       .catch((error) => {
         throw new Error(error)
       })
+  },
+  [ITEM_POST] ({ commit, state }, param) {
+    commit(SET_ITEM, param)
+    return api.item_post(state.item.id, state.status)
   },
   [ITEM_GET_COMMENTS] (context, id) {
     context.commit(FETCH_START_COMMENTS)
@@ -56,6 +66,7 @@ const actions = {
 
 const mutations = {
   [FETCH_END_ITEM] (state, item) {
+    // TODO: update status
     state.item = item
   },
   [RESET_STATE_ITEM] () {
@@ -63,6 +74,9 @@ const mutations = {
     for (let f in state) {
       Vue.set(state, f, initialState[f])
     }
+  },
+  [SET_ITEM] (state, param) {
+    Vue.set(state.status, param[0], param[1])
   },
   [FETCH_START_COMMENTS] (state) {
     state.loading = true
