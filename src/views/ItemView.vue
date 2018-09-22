@@ -27,7 +27,7 @@
 
         <h2 class="subheading" color="primary">Comments</h2>
         <v-list>
-          <template v-for="comment in itemDetailComments">
+          <template v-for="(comment, index) in itemDetailComments">
             <v-list-tile :key="comment.id" avatar>
               <v-list-tile-avatar>
                 <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
@@ -36,6 +36,9 @@
                 <v-list-tile-title v-html="comment.pubDate"></v-list-tile-title>
                 <v-list-tile-sub-title v-html="comment.description"></v-list-tile-sub-title>
               </v-list-tile-content>
+              <v-list-tile-action> <!-- TODO: v-if="comment.user" -->
+                <v-icon color="error" @click="remove(comment.id, index)">delete</v-icon>
+              </v-list-tile-action>
             </v-list-tile>
 
             <v-divider inset></v-divider>
@@ -60,7 +63,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST} from '../store/types'
+  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE} from '../store/types'
 
   export default {
     name: 'ItemView',
@@ -87,6 +90,14 @@
     methods: {
       submit: function () {
         this.$store.dispatch(COMMENT_POST)
+          .then(({data}) => {
+            this.errors = ''
+          }).catch(({response}) => {
+            this.errors = `${response.status}: ${response.statusText}`
+          })
+      },
+      remove: function (id, index) {
+        this.$store.dispatch(COMMENT_DELETE, [id, index])
           .then(({data}) => {
             this.errors = ''
           }).catch(({response}) => {

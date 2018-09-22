@@ -2,8 +2,8 @@ import Vue from 'vue'
 import api from '../api/api'
 
 import {
-  ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST,
-  FETCH_END_ITEM, FETCH_START_COMMENTS, FETCH_END_COMMENTS, RESET_STATE_ITEM, RESET_STATE_COMMENT
+  ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE,
+  FETCH_END_ITEM, FETCH_START_COMMENTS, FETCH_END_COMMENTS, RESET_STATE_ITEM, ADD_COMMENT, REMOVE_COMMENT
 } from './types'
 
 function getInitialState () {
@@ -44,8 +44,13 @@ const actions = {
   },
   [COMMENT_POST] ({commit, state}) {
     return api.comment_post(state.item.id, state.comment)
-      .then(({ data }) => { commit(RESET_STATE_COMMENT, data) })
+      .then(({ data }) => { commit(ADD_COMMENT, data) })
       .catch((error) => { throw new Error(error) })
+  },
+  [COMMENT_DELETE] (context, params) {
+    let response = api.comment_delete(params[0])
+    context.commit(REMOVE_COMMENT, params[1])
+    return response
   }
 }
 
@@ -66,9 +71,12 @@ const mutations = {
     state.comments = comments
     state.loading = false
   },
-  [RESET_STATE_COMMENT] (state, comment) {
+  [ADD_COMMENT] (state, comment) {
     state.comments.push(comment)
     Vue.set(state, 'comment', getInitialState()['comment'])
+  },
+  [REMOVE_COMMENT] (state, index) {
+    state.comments.splice(index, 1)
   }
 }
 

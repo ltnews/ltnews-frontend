@@ -3,6 +3,11 @@ import session from './session'
 const SECTION = 'section'
 const FEED = 'feed'
 const ITEM = 'item'
+const COMMENT = 'comment'
+
+function plural (entity) {
+  return `${entity}s`
+}
 
 function makeURL (entity, id, other) {
   let url = `./${entity}/`
@@ -37,7 +42,7 @@ export default {
     return session.get(makeURL(FEED, id))
   },
   feed_get_items (id) {
-    return session.get(makeURL(FEED, id, 'items'))
+    return session.get(makeURL(FEED, id, plural(ITEM)))
   },
   feed_delete (id) {
     return session.delete(makeURL(FEED, id))
@@ -49,9 +54,12 @@ export default {
     return session.get(makeURL(ITEM, id))
   },
   comment_get_all (id) {
-    return session.get(makeURL(ITEM, id, 'comments'))
+    return session.get(makeURL(ITEM, id, plural(COMMENT)))
   },
   comment_post (id, comment) {
-    return session.post(makeURL(ITEM, id, 'comments'), comment)
+    return session.post(makeURL(ITEM, id, plural(COMMENT)), comment)
+  },
+  comment_delete (id) {
+    return session.delete(makeURL(COMMENT, id))
   }
 }
