@@ -57,6 +57,9 @@ export default {
     // TODO: would be PUT
     return session.post(makeURL(ITEM, id), status)
   },
+  item_get_saved () {
+    return session.get(makeURL(ITEM, undefined, 'saved'))
+  },
   comment_get_all (id) {
     return session.get(makeURL(ITEM, id, plural(COMMENT)))
   },

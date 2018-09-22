@@ -1,9 +1,8 @@
 import api from '../api/api'
 
 import {
-  ITEM_GET_ALL,
-  FETCH_START_ITEMS,
-  FETCH_END_ITEMS
+  ITEM_GET_ALL, ITEM_GET_SAVED,
+  FETCH_START_ITEMS, FETCH_END_ITEMS
 } from './types'
 
 const state = {
@@ -22,6 +21,12 @@ const actions = {
   [ITEM_GET_ALL] ({ commit }) {
     commit(FETCH_START_ITEMS)
     return api.item_get_all()
+      .then(({ data }) => { commit(FETCH_END_ITEMS, data) })
+      .catch((error) => { throw new Error(error) })
+  },
+  [ITEM_GET_SAVED] ({ commit }) {
+    commit(FETCH_START_ITEMS)
+    return api.item_get_saved()
       .then(({ data }) => { commit(FETCH_END_ITEMS, data) })
       .catch((error) => { throw new Error(error) })
   }

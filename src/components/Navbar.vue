@@ -69,6 +69,11 @@
           link: {name: 'SectionList'},
           auth: true
         }, {
+          icon: 'saved',
+          title: 'Saved',
+          link: {name: 'ItemSaved'},
+          auth: true
+        }, {
           icon: 'exit_to_app',
           title: 'Logout',
           link: {name: 'Logout'},

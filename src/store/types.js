@@ -54,6 +54,7 @@ export const FEED_RESET = 'FEED_RESET'
 export const ITEM_GET_ALL = 'ITEM_GET_ALL'
 export const ITEM_POST = 'ITEM_POST'
 export const ITEM_GET_ONE = 'ITEM_GET_ONE'
+export const ITEM_GET_SAVED = 'ITEM_GET_SAVED'
 export const ITEM_GET_COMMENTS = 'ITEM_GET_COMMENTS'
 
 export const COMMENT_POST = 'COMMENT_POST'

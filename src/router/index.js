@@ -14,6 +14,7 @@ import SectionEdit from '../views/SectionEdit'
 import FeedView from '../views/FeedView'
 import ItemList from '../views/ItemList'
 import ItemView from '../views/ItemView'
+import ItemSaved from '../views/ItemSaved'
 
 import store from '../store'
 
@@ -123,6 +124,13 @@ export default new Router({
       path: '/item/list',
       name: 'ItemList',
       component: ItemList,
+      beforeEnter: requireAuthenticated,
+      props: true
+    },
+    {
+      path: '/item/saved',
+      name: 'ItemSaved',
+      component: ItemSaved,
       beforeEnter: requireAuthenticated,
       props: true
     },
