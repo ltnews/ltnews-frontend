@@ -5,7 +5,8 @@
 
       <v-toolbar-items>
         <v-btn dark flat :to="{name: 'SectionEdit', params: {id: sectionDetailSection.id}}">Edit</v-btn>
-        <v-btn dark flat @click="remove(sectionDetailSection.id)">Delete</v-btn>
+        <v-btn dark flat @click="remove()">Delete</v-btn>
+        <v-btn dark flat :to="{name: 'FeedCreate'}">Add Feed</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -50,7 +51,7 @@
       ])
     },
     methods: {
-      remove (id) {
+      remove () {
         this.$store.dispatch(SECTION_DELETE)
           .then(({data}) => {
             this.$router.push({name: 'SectionList'})

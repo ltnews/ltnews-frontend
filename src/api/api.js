@@ -38,6 +38,9 @@ export default {
   section_delete (id) {
     return session.delete(makeURL(SECTION, id))
   },
+  feed_post (feed) {
+    return session.post(makeURL(FEED), feed)
+  },
   feed_get_one (id) {
     return session.get(makeURL(FEED, id))
   },

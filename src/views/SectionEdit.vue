@@ -12,8 +12,8 @@
           <v-text-field v-model="sectionDetailSection.title" :rules="stringRules" label="Title" required></v-text-field>
           <v-text-field v-model="sectionDetailSection.description" label="Description"></v-text-field>
 
-          <v-btn :disabled="!valid" @click="submit(sectionDetailSection.id)" class="accent">submit</v-btn>
-          <v-btn @click="clear">clear</v-btn>
+          <v-btn :disabled="!valid" @click="submit(sectionDetailSection.id)" class="accent">Submit</v-btn>
+          <v-btn @click="cancel()">Cancel</v-btn>
         </v-form>
       </v-flex>
     </v-container>
@@ -69,9 +69,8 @@
             this.errors = `${response.status}: ${response.statusText}`
           })
       },
-      clear () {
-        this.$refs.form.reset()
-        this.errors = ''
+      cancel () {
+        this.$router.go(-1)
       }
     }
   }

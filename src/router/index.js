@@ -12,6 +12,7 @@ import SectionList from '../views/SectionList'
 import SectionView from '../views/SectionView'
 import SectionEdit from '../views/SectionEdit'
 import FeedView from '../views/FeedView'
+import FeedCreate from '../views/FeedCreate'
 import ItemList from '../views/ItemList'
 import ItemView from '../views/ItemView'
 import ItemSaved from '../views/ItemSaved'
@@ -118,6 +119,13 @@ export default new Router({
       path: '/feed/view/:id',
       name: 'FeedView',
       component: FeedView,
+      props: true
+    },
+    {
+      path: '/feed/create',
+      name: 'FeedCreate',
+      component: FeedCreate,
+      beforeEnter: requireAuthenticated,
       props: true
     },
     {

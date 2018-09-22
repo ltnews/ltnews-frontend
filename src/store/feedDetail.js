@@ -1,9 +1,8 @@
-import Vue from 'vue'
 import api from '../api/api'
 
 import {
-  FEED_GET_ONE, FEED_GET_ITEMS, FEED_RESET, FEED_DELETE,
-  FETCH_END_FEED, FETCH_END_FEED_ITEMS, RESET_STATE_FEED
+  FEED_GET_ONE, FEED_GET_ITEMS, FEED_DELETE,
+  FETCH_END_FEED, FETCH_END_FEED_ITEMS
 } from './types'
 
 function getInitialState () {
@@ -41,9 +40,6 @@ const actions = {
   },
   [FEED_DELETE] ({state}) {
     return api.feed_delete(state.feed.id)
-  },
-  [FEED_RESET] ({commit}) {
-    commit(RESET_STATE_FEED)
   }
 }
 
@@ -53,12 +49,6 @@ const mutations = {
   },
   [FETCH_END_FEED_ITEMS] (state, items) {
     state.items = items
-  },
-  [RESET_STATE_FEED] () {
-    let initialState = getInitialState()
-    for (let f in state) {
-      Vue.set(state, f, initialState[f])
-    }
   }
 }
 

@@ -4,7 +4,7 @@
       <v-spacer></v-spacer>
 
       <v-toolbar-items>
-        <v-btn dark flat :to="{name: 'SectionEdit'}">Delete</v-btn>
+        <v-btn dark flat @click="remove(feedDetailFeed.id)">Delete</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -30,7 +30,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {FEED_GET_ONE, FEED_GET_ITEMS} from '../store/types'
+  import {FEED_GET_ONE, FEED_GET_ITEMS, FEED_DELETE} from '../store/types'
   import PageHead from '../components/PageHead'
   import CardItem from '../components/CardItem'
 
@@ -50,6 +50,16 @@
         'feedDetailFeed',
         'feedDetailItems'
       ])
+    },
+    methods: {
+      remove (id) {
+        this.$store.dispatch(FEED_DELETE)
+          .then(({data}) => {
+            this.$router.push({name: 'SectionList'})
+          }).catch(({response}) => {
+            this.errors = `${response.status}: ${response.statusText}`
+          })
+      }
     }
   }
 </script>

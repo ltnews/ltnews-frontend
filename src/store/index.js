@@ -8,6 +8,7 @@ import signup from './signup'
 import sectionList from './sectionList'
 import sectionDetail from './sectionDetail'
 import feedDetail from './feedDetail'
+import feedForm from './feedForm'
 import itemList from './itemList'
 import itemDetail from './itemDetail'
 
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     sectionList,
     sectionDetail,
     feedDetail,
+    feedForm,
     itemList,
     itemDetail
   },

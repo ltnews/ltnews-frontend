@@ -5,6 +5,7 @@
 
       <v-toolbar-items>
         <v-btn dark flat :to="{name: 'SectionEdit'}">Create</v-btn>
+        <v-btn dark flat :to="{name: 'FeedCreate'}">Add Feed</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
