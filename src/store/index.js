@@ -5,6 +5,7 @@ import createLogger from 'vuex/dist/logger'
 import auth from './auth'
 import password from './password'
 import signup from './signup'
+import profile from './profile'
 import sectionList from './sectionList'
 import sectionDetail from './sectionDetail'
 import feedDetail from './feedDetail'
@@ -21,6 +22,7 @@ export default new Vuex.Store({
     auth,
     password,
     signup,
+    profile,
     sectionList,
     sectionDetail,
     feedDetail,

@@ -1,5 +1,6 @@
 import session from './session'
 
+const PROFILE = 'profile'
 const SECTION = 'section'
 const FEED = 'feed'
 const ITEM = 'item'
@@ -23,6 +24,9 @@ function makeURL (entity, id, other) {
 }
 
 export default {
+  profile_get_one () {
+    return session.get(makeURL(PROFILE))
+  },
   section_get_all () {
     return session.get(makeURL(SECTION))
   },

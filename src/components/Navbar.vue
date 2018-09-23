@@ -6,18 +6,19 @@
       app
     >
       <v-img :aspect-ratio="16/9" src="static/newspaper.jpg"  v-if="isAuthenticated">
-        <v-layout pa-2 column fill-height class="lightbox white--text">
+        <v-layout pa-3 column fill-height class="lightbox white--text">
           <v-spacer></v-spacer>
           <v-flex shrink>
 
-            <v-avatar><img src="https://randomuser.me/api/portraits/men/85.jpg"></v-avatar>
-            <div class="subheading">Jonathan Lee</div>
-            <div class="body-1">heyfromjonathan@gmail.com</div>
+            <v-avatar size="75px"><img :src="profile.image"></v-avatar>
+            <br><br>
+            <div class="subheading font-weight-medium">{{profile.user.first_name}} {{profile.user.last_name}}</div>
+            <div class="body-1" v-text="profile.user.email"></div>
           </v-flex>
         </v-layout>
       </v-img>
 
-      <v-list class="pt-0" dense>
+      <v-list>
         <v-list-tile
           v-for="(item, i) in items"
           :key="i"
@@ -36,16 +37,13 @@
     <v-toolbar
       color="primary"
       app
+      dark
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <!-- <v-btn flat v-if="currentUser.username" v-text="currentUser.username"></v-btn> -->
-      </v-toolbar-items>
-      <v-btn icon>
-        <v-icon>menu</v-icon>
-      </v-btn>
+      <v-btn icon><v-icon>search</v-icon></v-btn>
+      <v-btn icon><v-icon>more_vert</v-icon></v-btn>
     </v-toolbar>
   </div>
 </template>
@@ -92,8 +90,11 @@
       }
     },
     name: 'Navbar',
-    computed: mapGetters('auth', [
-      'isAuthenticated', 'currentUser'
-    ])
+    computed: {
+      ...mapGetters({
+        isAuthenticated: 'auth/isAuthenticated',
+        profile: 'getProfile'
+      })
+    }
   }
 </script>

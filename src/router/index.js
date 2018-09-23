@@ -19,6 +19,11 @@ import ItemSaved from '../views/ItemSaved'
 
 import store from '../store'
 
+const initAuthenticated = (to, from, next) => {
+  store.dispatch('auth/initialize')
+    .then(() => { next() })
+}
+
 const requireAuthenticated = (to, from, next) => {
   store.dispatch('auth/initialize')
     .then(() => {
@@ -55,6 +60,7 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+      beforeEnter: initAuthenticated,
       props: true
     },
     {

@@ -1,12 +1,10 @@
 import auth from '../api/auth'
 import session from '../api/session'
+import store from '@/store'
+
 import {
-  LOGIN_BEGIN,
-  LOGIN_FAILURE,
-  LOGIN_SUCCESS,
-  LOGOUT,
-  REMOVE_TOKEN,
-  SET_TOKEN
+  PROFILE_GET_ONE, PROFILE_INIT, PROFILE_RESET,
+  LOGIN_BEGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, REMOVE_TOKEN, SET_TOKEN
 } from './types'
 
 const TOKEN_STORAGE_KEY = 'TOKEN_STORAGE_KEY'
@@ -26,12 +24,14 @@ const actions = {
     commit(LOGIN_BEGIN)
     return auth.login(username, password)
       .then(({ data }) => commit(SET_TOKEN, data.key))
-      .then(() => commit(LOGIN_SUCCESS, username))
+      .then(() => commit(LOGIN_SUCCESS))
+      .then(() => store.dispatch(PROFILE_GET_ONE))
       .catch(() => commit(LOGIN_FAILURE))
   },
   logout ({ commit }) {
     return auth.logout()
       .then(() => commit(LOGOUT))
+      .then(() => store.dispatch(PROFILE_RESET))
       .finally(() => commit(REMOVE_TOKEN))
   },
   initialize ({ commit }) {
@@ -42,6 +42,8 @@ const actions = {
     } else {
       commit(REMOVE_TOKEN)
     }
+
+    store.dispatch(PROFILE_INIT)
   }
 }
 
@@ -54,7 +56,7 @@ const mutations = {
     state.authenticating = false
     state.error = true
   },
-  [LOGIN_SUCCESS] (state, username) {
+  [LOGIN_SUCCESS] (state) {
     state.authenticating = false
     state.error = false
   },
