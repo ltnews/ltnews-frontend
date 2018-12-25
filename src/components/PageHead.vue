@@ -1,7 +1,7 @@
 <template>
   <section class="page-head">
-    <h1 class="display-1 primary--text" v-text="title"></h1>
-    <p v-text="subtitle"></p>
+    <h1 class="display-2 primary--text" v-text="title"></h1>
+    <p v-text="subtitle" class="subheading"></p>
   </section>
 </template>
 

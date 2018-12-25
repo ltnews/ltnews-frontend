@@ -8,6 +8,7 @@ import Register from '../views/Register'
 import VerifyEmail from '../views/VerifyEmail'
 
 import Home from '../views/Home'
+import ProfileView from '../views/ProfileView'
 import SectionList from '../views/SectionList'
 import SectionView from '../views/SectionView'
 import SectionEdit from '../views/SectionEdit'
@@ -98,6 +99,13 @@ export default new Router({
       path: '/logout',
       name: 'Logout',
       beforeEnter: redirectLogout,
+      props: true
+    },
+    {
+      path: '/profile/view',
+      name: 'ProfileView',
+      component: ProfileView,
+      beforeEnter: requireAuthenticated,
       props: true
     },
     {
