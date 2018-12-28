@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-//import createLogger from 'vuex/dist/logger'
+import createLogger from 'vuex/dist/logger'
 
 Vue.use(Vuex);
 
-import auth from './store/auth'
-import password from './store/password'
-import signup from './store/signup'
-import profile from './store/profile'
-import sectionList from './store/sectionList'
-import sectionDetail from './store/sectionDetail'
-import feedDetail from './store/feedDetail'
-import feedForm from './store/feedForm'
-import itemList from './store/itemList'
-import itemDetail from './store/itemDetail'
+import auth from './stores/auth'
+import password from './stores/password'
+import signup from './stores/signup'
+import profile from './stores/profile'
+import sectionList from './stores/sectionList'
+import sectionDetail from './stores/sectionDetail'
+import feedDetail from './stores/feedDetail'
+import feedForm from './stores/feedForm'
+import itemList from './stores/itemList'
+import itemDetail from './stores/itemDetail'
 
-//const debug = process.env.NODE_ENV !== 'production'
+const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
@@ -30,6 +30,6 @@ export default new Vuex.Store({
     itemList,
     itemDetail
   },
-  //strict: debug,
-  //plugins: debug ? [createLogger()] : []
+  strict: debug,
+  plugins: debug ? [createLogger()] : []
 })
