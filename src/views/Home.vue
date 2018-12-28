@@ -1,14 +1,14 @@
 <template>
   <div>
     <section>
-      <v-parallax src="static/newspaper.jpg" height="600">
+      <v-parallax :src="require('../assets/newspaper.jpg')" height="600">
         <v-layout
           column
           align-center
           justify-center
           class="white--text"
         >
-          <img src="static/icon.png" alt="Vuetify.js" height="200">
+          <img src="../assets/icon.png" alt="Vuetify.js" height="200">
           <h1 class="white--text mb-2 display-1 text-xs-center">Parallax Template</h1>
           <div class="subheading mb-3 text-xs-center">Powered by Vuetify</div>
           <v-btn
@@ -94,7 +94,7 @@
     </section>
 
     <section>
-      <v-parallax src="static/internet.jpg" height="380">
+      <v-parallax :src="require('../assets/internet.jpg')" height="380">
         <v-layout column align-center justify-center>
           <div class="headline white--text mb-3 text-xs-center">Web development has never been easier</div>
           <em>Kick-start your application today</em>

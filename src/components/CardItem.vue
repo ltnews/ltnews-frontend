@@ -20,7 +20,7 @@
     },
     filters: {
       truncate: function (text) {
-        let length = 150
+        let length = 150;
         if (text.length <= length) {
           return text
         } else {

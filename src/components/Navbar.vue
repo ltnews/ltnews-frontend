@@ -5,7 +5,7 @@
       fixed
       app
     >
-      <v-img :aspect-ratio="16/9" src="static/newspaper.jpg"  v-if="isAuthenticated">
+      <v-img :aspect-ratio="16/9" :src="require('../assets/newspaper.jpg')"  v-if="isAuthenticated">
         <v-layout pa-3 column fill-height class="lightbox white--text">
           <v-spacer></v-spacer>
           <v-flex>
