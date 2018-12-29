@@ -82,7 +82,7 @@ export default new Router({
         },
         {
             path: '/register',
-            name: 'PasswordResetConfirm',
+            name: 'Register',
             component: Register,
             props: true
         },
