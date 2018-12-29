@@ -31,7 +31,7 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import {SECTION_GET_ALL} from '../store/types'
+  import {SECTION_GET_ALL} from '../stores/types'
   import PageHead from '../components/PageHead'
   import CardListFeed from '../components/CardListFeed'
 

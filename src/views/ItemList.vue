@@ -19,7 +19,7 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import {ITEM_GET_ALL} from '../store/types'
+  import {ITEM_GET_ALL} from '../stores/types'
   import PageHead from '../components/PageHead'
   import CardItem from '../components/CardItem'
 

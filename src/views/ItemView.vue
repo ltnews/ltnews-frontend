@@ -68,7 +68,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE, ITEM_POST} from '../store/types'
+  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE, ITEM_POST} from '../stores/types'
 
   export default {
     name: 'ItemView',

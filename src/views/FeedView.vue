@@ -30,7 +30,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {FEED_GET_ONE, FEED_GET_ITEMS, FEED_DELETE} from '../store/types'
+  import {FEED_GET_ONE, FEED_GET_ITEMS, FEED_DELETE} from '../stores/types'
   import PageHead from '../components/PageHead'
   import CardItem from '../components/CardItem'
 

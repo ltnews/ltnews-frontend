@@ -26,7 +26,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {SECTION_GET_ONE, SECTION_DELETE} from '../store/types'
+  import {SECTION_GET_ONE, SECTION_DELETE} from '../stores/types'
   import PageHead from '../components/PageHead'
   import CardListFeed from '../components/CardListFeed'
 

@@ -23,7 +23,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {FEED_RESET, FEED_POST} from '../store/types'
+  import {FEED_RESET, FEED_POST} from '../stores/types'
   import PageHead from '../components/PageHead'
 
   export default {
