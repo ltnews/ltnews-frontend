@@ -1,44 +1,57 @@
 import auth from '../api/auth'
 import session from '../api/session'
-import store from '@/store'
+import store from '../store'
 
 import {
+  LOGIN, LOGIN_INIT, LOGOUT,
   PROFILE_GET_ONE, PROFILE_INIT, PROFILE_RESET,
-  LOGIN_BEGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, REMOVE_TOKEN, SET_TOKEN
+  LOGIN_BEGIN, LOGIN_FAILURE, LOGIN_END, REMOVE_TOKEN, SET_TOKEN
 } from './types'
 
 const TOKEN_STORAGE_KEY = 'TOKEN_STORAGE_KEY'
 
-const initialState = {
-  authenticating: false,
-  error: false,
-  token: null
+function getInitialState () {
+  return {
+    authenticating: false,
+    error: false,
+    token: null,
+    loginForm: {
+      username: '',
+      password: ''
+    }
+  }
 }
 
+export const state = getInitialState()
+
 const getters = {
-  isAuthenticated: state => !!state.token
+  isAuthenticated: state => !!state.token,
+  loginForm: state => state.loginForm
 }
 
 const actions = {
-  login ({commit}, {username, password}) {
+  [LOGIN] ({commit, state}) {
     commit(LOGIN_BEGIN)
-    return auth.login(username, password)
+    return auth.login(state.loginForm)
       .then(({data}) => {
         commit(SET_TOKEN, data.key)
-        commit(LOGIN_SUCCESS)
+        commit(LOGIN_END)
         store.dispatch(PROFILE_GET_ONE)
+          .catch((error) => {
+            throw error
+          })
       }).catch((error) => {
         commit(LOGIN_FAILURE)
         throw error
       })
   },
-  logout ({commit}) {
+  [LOGOUT] ({commit}) {
     return auth.logout()
-      .then(() => commit(LOGOUT))
+      .then(() => commit(LOGIN_END))
       .then(() => store.dispatch(PROFILE_RESET))
       .finally(() => commit(REMOVE_TOKEN))
   },
-  initialize ({commit}) {
+  [LOGIN_INIT] ({commit}) {
     const token = localStorage.getItem(TOKEN_STORAGE_KEY)
 
     if (token) {
@@ -48,6 +61,9 @@ const actions = {
     }
 
     store.dispatch(PROFILE_INIT)
+      .catch((error) => {
+        throw error
+      })
   }
 }
 
@@ -60,13 +76,11 @@ const mutations = {
     state.authenticating = false
     state.error = true
   },
-  [LOGIN_SUCCESS] (state) {
-    state.authenticating = false
-    state.error = false
-  },
-  [LOGOUT] (state) {
-    state.authenticating = false
-    state.error = false
+  [LOGIN_END] (state) {
+    let initial = getInitialState()
+    state.authenticating = initial.authenticating
+    state.error = initial.error
+    state.loginForm = initial.loginForm
   },
   [SET_TOKEN] (state, token) {
     localStorage.setItem(TOKEN_STORAGE_KEY, token)
@@ -81,8 +95,7 @@ const mutations = {
 }
 
 export default {
-  namespaced: true,
-  state: initialState,
+  state,
   getters,
   actions,
   mutations

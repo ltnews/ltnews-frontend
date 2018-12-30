@@ -9,12 +9,12 @@
             <v-flex>
                 <p class="error--text" v-if="errors" v-text="errors"></p>
                 <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="submit">
-                    <v-text-field v-model="inputs.username" label="Username" required></v-text-field>
-                    <v-text-field v-model="inputs.password" type="password" label="Password" required></v-text-field>
+                    <v-text-field v-model="loginForm.username" label="Username" required></v-text-field>
+                    <v-text-field v-model="loginForm.password" label="Password" type="password" required></v-text-field>
 
-                    <v-btn :disabled="!valid" @click="login(inputs)" type="submit" class="accent">Submit</v-btn>
-                    <v-btn :to="{name: 'Register'}" >Register</v-btn>
-                    <v-btn :to="{name: 'PasswordReset'}" outline  class="accent">Reset Password</v-btn>
+                    <v-btn :disabled="!valid" type="submit" class="accent">Submit</v-btn>
+                    <v-btn :to="{name: 'Register'}">Register</v-btn>
+                    <v-btn :to="{name: 'PasswordReset'}" outline class="accent">Reset Password</v-btn>
                 </v-form>
             </v-flex>
         </v-container>
@@ -22,6 +22,8 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+  import {LOGIN} from '../stores/types'
   import PageHead from '../components/PageHead'
 
   export default {
@@ -29,22 +31,20 @@
     components: {PageHead},
     data () {
       return {
-        inputs: {
-          username: '',
-          password: ''
-        },
         valid: true,
         errors: ''
       }
     },
+    computed: {
+      ...mapGetters([
+        'loginForm'
+      ])
+    },
     methods: {
-      login ({username, password}) {
-        this.$store.dispatch('auth/login', {username, password})
-          .then(() => {
-            this.$router.push({name: 'Home'})
-          }).catch(({response}) => {
-            this.errors = `${response.status}: ${response.statusText}`
-        })
+      submit () {
+        this.$store.dispatch(LOGIN)
+          .then(() => this.$router.push({name: 'Home'}))
+          .catch(({response}) => this.errors = `${response.status}: ${response.statusText}`)
       }
     }
   }

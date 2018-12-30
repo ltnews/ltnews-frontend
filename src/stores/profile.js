@@ -23,8 +23,12 @@ const getters = {
 const actions = {
   [PROFILE_GET_ONE] (context) {
     return api.profile_get_one()
-      .then(({data}) => { context.commit(SET_PROFILE, data) })
-      .catch((error) => { throw new Error(error) })
+      .then(({data}) => {
+        context.commit(SET_PROFILE, data)
+      })
+      .catch((error) => {
+        throw new Error(error)
+      })
   },
   [PROFILE_RESET] ({commit}) {
     commit(REMOVE_PROFILE)

@@ -3,8 +3,8 @@ import session from './session'
 const ROOT_AUTH = 'auth/'
 
 export default {
-  login (username, password) {
-    return session.post(ROOT_AUTH + 'login/', { username, password })
+  login (user_pass) {
+    return session.post(ROOT_AUTH + 'login/', user_pass)
   },
   logout () {
     return session.post(ROOT_AUTH + 'logout/', {})

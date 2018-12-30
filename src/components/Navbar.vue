@@ -91,7 +91,7 @@
     name: 'Navbar',
     computed: {
       ...mapGetters({
-        isAuthenticated: 'auth/isAuthenticated',
+        isAuthenticated: 'isAuthenticated',
         profile: 'getProfile'
       })
     }
