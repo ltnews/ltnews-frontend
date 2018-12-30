@@ -16,9 +16,12 @@ function getInitialState () {
     registrationLoading: false,
     registerForm: {
       username: '',
+      first_name: '',
+      last_name: '',
       password1: '',
       password2: '',
-      email: ''
+      email: '',
+      image: '',
     }
   }
 }

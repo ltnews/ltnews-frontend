@@ -14,12 +14,20 @@
                 <v-form ref="form" lazy-validation @submit.prevent="submit">
                     <v-text-field v-model="registerForm.username" label="Username" required
                                   :error-messages="errors.username"></v-text-field>
+                    <v-text-field v-model="registerForm.first_name" label="First Name" required
+                                  :error-messages="errors.first_name"></v-text-field>
+                    <v-text-field v-model="registerForm.last_name" label="Last Name" required
+                                  :error-messages="errors.last_name"></v-text-field>
+                    <v-divider></v-divider>
                     <v-text-field v-model="registerForm.password1" label="Password" type="password" required
                                   :error-messages="errors.password1"></v-text-field>
                     <v-text-field v-model="registerForm.password2" label="Confirm Password" type="password" required
                                   :error-messages="errors.password2"></v-text-field>
+                    <v-divider></v-divider>
                     <v-text-field v-model="registerForm.email" label="Email" required
                                   :error-messages="errors.email"></v-text-field>
+                    <v-text-field v-model="registerForm.image" label="Image URL" required
+                                  :error-messages="errors.image"></v-text-field>
 
                     <v-btn type="submit" class="accent">Submit</v-btn>
                     <v-btn :to="{name: 'Login'}">Login</v-btn>
