@@ -1,78 +1,80 @@
 <template>
-  <div id="register-view">
-    <h1>Create Account</h1>
-    <template v-if="registrationLoading">
-      loading...
-    </template>
-    <template v-else-if="!registrationCompleted">
-      <form @submit.prevent="submit">
-        <input v-model="inputs.username" type="text" id="username" placeholder="username">
-        <input v-model="inputs.password1" type="password" id="password1" placeholder="password">
-        <input v-model="inputs.password2" type="password" id="password2"
-               placeholder="confirm password">
-        <input v-model="inputs.email" type="email" id="email" placeholder="email">
-      </form>
-      <button @click="createAccount(inputs)">
-        create account
-      </button>
-      <span class="error" v-show="registrationError">
-        An error occured while processing your request.
-      </span>
-      <div>
-        Already have an account?
-        <router-link to="/login">login</router-link> |
-        <router-link to="/password_reset">reset password</router-link>
-      </div>
-    </template>
-    <template v-else>
-      <div>
-        Registration complete. You should receive an email shortly with instructions on how to
-        activate your account.
-      </div>
-      <div>
-        <router-link to="/login">return to login page</router-link>
-      </div>
-    </template>
-  </div>
+    <v-flex xs12>
+        <v-container grid-list-xl>
+            <page-head
+                    title="Register"
+                    subtitle="Create Account">
+            </page-head>
+
+            <template v-if="registrationLoading">
+                loading...
+            </template>
+            <template v-else-if="!registrationCompleted">
+                <p class="error--text" v-if="message" v-text="message"></p>
+                <v-form ref="form" lazy-validation @submit.prevent="submit">
+                    <v-text-field v-model="registerForm.username" label="Username" required
+                                  :error-messages="errors.username"></v-text-field>
+                    <v-text-field v-model="registerForm.password1" label="Password" type="password" required
+                                  :error-messages="errors.password1"></v-text-field>
+                    <v-text-field v-model="registerForm.password2" label="Confirm Password" type="password" required
+                                  :error-messages="errors.password2"></v-text-field>
+                    <v-text-field v-model="registerForm.email" label="Email" required
+                                  :error-messages="errors.email"></v-text-field>
+
+                    <v-btn type="submit" class="accent">Submit</v-btn>
+                    <v-btn :to="{name: 'Login'}">Login</v-btn>
+                    <v-btn :to="{name: 'PasswordReset'}" outline class="accent">Reset Password</v-btn>
+                </v-form>
+            </template>
+            <template v-else>
+                <div>
+                    Registration complete. You should receive an email shortly with instructions on how to
+                    activate your account.
+                </div>
+                <div>
+                    <v-btn :to="{name: 'Login'}">Login</v-btn>
+                </div>
+            </template>
+        </v-container>
+    </v-flex>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex'
+  import {mapGetters} from 'vuex'
+  import {REGISTER, REGISTER_RESET} from '../stores/types'
+  import PageHead from '../components/PageHead'
 
   export default {
+    name: 'Login',
+    components: {PageHead},
     data () {
       return {
-        inputs: {
-          username: '',
-          password1: '',
-          password2: '',
-          email: ''
-        }
+        errors: [],
+        message: ''
       }
     },
-    computed: mapState('signup', [
-      'registrationCompleted',
-      'registrationError',
-      'registrationLoading'
-    ]),
-    methods: mapActions('signup', [
-      'createAccount',
-      'clearRegistrationStatus'
-    ]),
-    beforeRouteLeave (to, from, next) {
-      this.clearRegistrationStatus()
-      next()
+    computed: {
+      ...mapGetters([
+        'registerForm',
+        'registrationLoading',
+        'registrationCompleted'
+      ])
+    },
+    methods: {
+      submit () {
+        this.$store.dispatch(REGISTER)
+          .then(() => {
+            this.$router.push({name: 'Home'})
+          }).catch(({response}) => {
+            this.errors = response.data
+            this.message = response.data['non_field_errors'].join(" ")
+          }
+        )
+      }
+    },
+    async beforeRouteLeave (to, from, next) {
+      await this.$store.dispatch(REGISTER_RESET)
+      return next()
     }
   }
 </script>
-
-<style>
-  form input {
-    display: block
-  }
-
-  .error {
-    color: crimson;
-    font-size: 12px;
-  }
-</style>

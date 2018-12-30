@@ -44,7 +44,7 @@
       submit () {
         this.$store.dispatch(LOGIN)
           .then(() => this.$router.push({name: 'Home'}))
-          .catch(({response}) => this.errors = `${response.status}: ${response.statusText}`)
+          .catch(({response}) => this.errors = response.data['non_field_errors'].join(" "))
       }
     }
   }

@@ -9,8 +9,8 @@ export default {
   logout () {
     return session.post(ROOT_AUTH + 'logout/', {})
   },
-  createAccount (username, password1, password2, email) {
-    return session.post('registration/', { username, password1, password2, email })
+  createAccount (registerForm) {
+    return session.post('registration/', registerForm)
   },
   changeAccountPassword (password1, password2) {
     return session.post(ROOT_AUTH + 'password/change/', { password1, password2 })
