@@ -53,7 +53,7 @@
   import PageHead from '../components/PageHead'
 
   export default {
-    name: 'Login',
+    name: 'Register',
     components: {PageHead},
     data () {
       return {
