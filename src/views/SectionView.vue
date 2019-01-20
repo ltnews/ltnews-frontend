@@ -6,7 +6,7 @@
       <v-toolbar-items>
         <v-btn dark flat :to="{name: 'SectionEdit', params: {id: sectionDetailSection.id}}">Edit</v-btn>
         <v-btn dark flat @click="toast = true">Delete</v-btn>
-        <v-btn dark flat :to="{name: 'FeedCreate'}">Add Feed</v-btn>
+        <v-btn dark flat :to="{name: 'FeedCreate', params: {title: sectionDetailSection.title}}">Add Feed</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 

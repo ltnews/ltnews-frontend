@@ -34,6 +34,7 @@
   export default {
     name: 'FeedCreate',
     components: {PageHead},
+    props: ['title'],
     data () {
       return {
         valid: true,
@@ -73,6 +74,11 @@
     mounted () {
       api.section_all_names().then(({data}) => this.sectionNames = data)
       api.feed_all_links().then(({data}) => this.feedLinks = data)
+
+      if (this.title) {
+        this.feedForm.section = this.title
+      }
+
     }
   }
 </script>
