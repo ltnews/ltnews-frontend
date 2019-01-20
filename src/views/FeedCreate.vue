@@ -7,6 +7,8 @@
             </page-head>
 
             <v-flex>
+                <v-progress-linear :active="loading" color="accent" :indeterminate="loading"></v-progress-linear>
+
                 <p class="error--text" v-if="errors" v-text="errors"></p>
                 <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="submit">
                     <v-combobox prepend-icon="language" v-model="feedForm.url" label="URL" :rules="urlRules"
@@ -36,6 +38,7 @@
       return {
         valid: true,
         errors: '',
+        loading: false,
         urlRules: [
           v => !!v || 'URL is required',
           v => /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/.test(v) || 'URL is not valid'
@@ -55,6 +58,7 @@
     },
     methods: {
       submit () {
+        this.loading = true
         this.$store.dispatch(FEED_POST)
           .then(() => {
             this.$router.push({name: 'SectionList'})
