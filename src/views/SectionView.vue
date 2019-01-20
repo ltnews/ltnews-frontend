@@ -5,7 +5,7 @@
 
       <v-toolbar-items>
         <v-btn dark flat :to="{name: 'SectionEdit', params: {id: sectionDetailSection.id}}">Edit</v-btn>
-        <v-btn dark flat @click="remove()">Delete</v-btn>
+        <v-btn dark flat @click="toast = true">Delete</v-btn>
         <v-btn dark flat :to="{name: 'FeedCreate'}">Add Feed</v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -19,13 +19,18 @@
       <v-flex>
         <card-list-feed title="Feeds" :feeds="sectionDetailSection.feeds"></card-list-feed>
       </v-flex>
+
+      <v-snackbar v-model="toast" right color="secondary">
+        Do you want to remove this section?
+        <v-btn color="accent" flat @click="remove()">Yes</v-btn>
+      </v-snackbar>
     </v-container>
   </v-flex>
 </template>
 
 <script>
   import {mapGetters} from 'vuex'
-  import store from '@/store'
+  import store from '../store'
   import {SECTION_GET_ONE, SECTION_DELETE} from '../stores/types'
   import PageHead from '../components/PageHead'
   import CardListFeed from '../components/CardListFeed'
@@ -36,13 +41,14 @@
     beforeRouteEnter (to, from, next) {
       Promise.all([
         store.dispatch(SECTION_GET_ONE, to.params.id)
-      ]).then((data) => {
+      ]).then(() => {
         next()
       })
     },
     data () {
       return {
-        errors: ''
+        errors: '',
+        toast: false
       }
     },
     computed: {
@@ -53,7 +59,7 @@
     methods: {
       remove () {
         this.$store.dispatch(SECTION_DELETE)
-          .then(({data}) => {
+          .then(() => {
             this.$router.push({name: 'SectionList'})
           }).catch(({response}) => {
             this.errors = `${response.status}: ${response.statusText}`

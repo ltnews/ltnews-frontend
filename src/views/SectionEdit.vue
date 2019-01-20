@@ -1,23 +1,24 @@
 <template>
-  <v-flex xs12>
-    <v-container grid-list-xl>
-      <page-head
-        :title="(sectionDetailSection.id ? 'Edit' : 'Create') + ' Section'"
-        :subtitle="'In this form, you can ' + (sectionDetailSection.id ? 'edit' : 'create') + ' the section'">
-      </page-head>
+    <v-flex xs12>
+        <v-container grid-list-xl>
+            <page-head
+                    :title="(sectionDetailSection.id ? 'Edit' : 'Create') + ' Section'"
+                    :subtitle="'In this form, you can ' + (sectionDetailSection.id ? 'edit' : 'create') + ' the section'">
+            </page-head>
 
-      <v-flex>
-        <p class="error--text" v-if="errors" v-text="errors"></p>
-        <v-form ref="form" v-model="valid" lazy-validation>
-          <v-text-field v-model="sectionDetailSection.title" :rules="stringRules" label="Title" required></v-text-field>
-          <v-text-field v-model="sectionDetailSection.description" label="Description"></v-text-field>
+            <v-flex>
+                <p class="error--text" v-if="errors" v-text="errors"></p>
+                <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="submit(sectionDetailSection.id)">
+                    <v-text-field v-model="sectionDetailSection.title" :rules="stringRules" label="Title"
+                                  required></v-text-field>
+                    <v-text-field v-model="sectionDetailSection.description" label="Description"></v-text-field>
 
-          <v-btn :disabled="!valid" @click="submit(sectionDetailSection.id)" class="accent">Submit</v-btn>
-          <v-btn @click="cancel()">Cancel</v-btn>
-        </v-form>
-      </v-flex>
-    </v-container>
-  </v-flex>
+                    <v-btn :disabled="!valid" type="submit" class="accent">Submit</v-btn>
+                    <v-btn @click="cancel()">Cancel</v-btn>
+                </v-form>
+            </v-flex>
+        </v-container>
+    </v-flex>
 </template>
 
 <script>
@@ -66,8 +67,8 @@
           .then(({data}) => {
             this.$router.push({name: 'SectionView', params: {id: data.id}})
           }).catch(({response}) => {
-            this.errors = `${response.status}: ${response.statusText}`
-          })
+          this.errors = `${response.status}: ${response.statusText}`
+        })
       },
       cancel () {
         this.$router.go(-1)
