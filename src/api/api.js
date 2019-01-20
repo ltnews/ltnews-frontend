@@ -42,6 +42,9 @@ export default {
   section_delete (id) {
     return session.delete(makeURL(SECTION, id))
   },
+  section_all_names () {
+    return session.get(makeURL(SECTION, 'names'))
+  },
   feed_post (feed) {
     return session.post(makeURL(FEED), feed)
   },
@@ -54,6 +57,9 @@ export default {
   feed_delete (id) {
     return session.delete(makeURL(FEED, id))
   },
+  feed_all_links () {
+    return session.get(makeURL(FEED, 'links'))
+  },
   item_get_all () {
     return session.get(makeURL(ITEM))
   },
@@ -65,7 +71,7 @@ export default {
     return session.post(makeURL(ITEM, id), status)
   },
   item_get_saved () {
-    return session.get(makeURL(ITEM, undefined, 'saved'))
+    return session.get(makeURL(ITEM, 'saved'))
   },
   comment_get_all (id) {
     return session.get(makeURL(ITEM, id, plural(COMMENT)))
