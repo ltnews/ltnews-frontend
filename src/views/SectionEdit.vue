@@ -23,7 +23,7 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import store from '@/store'
+  import store from '../store'
   import {SECTION_GET_ONE, SECTION_POST, SECTION_PUT, SECTION_RESET} from '../stores/types'
   import PageHead from '../components/PageHead'
 

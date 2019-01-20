@@ -46,7 +46,7 @@
       ])
     },
     mounted () {
-      this.$store.dispatch(SECTION_GET_ALL)
+      this.$store.dispatch(SECTION_GET_ALL).catch()
     }
   }
 </script>
