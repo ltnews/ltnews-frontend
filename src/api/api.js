@@ -81,5 +81,8 @@ export default {
   },
   comment_delete (id) {
     return session.delete(makeURL(COMMENT, id))
+  },
+  generic_get (url) {
+    return session.get(url)
   }
 }

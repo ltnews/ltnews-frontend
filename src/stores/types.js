@@ -69,6 +69,7 @@ export const SECTION_RESET = 'SECTION_RESET'
 
 export const FEED_GET_ONE = 'FEED_GET_ONE'
 export const FEED_GET_ITEMS = 'FEED_GET_ITEMS'
+export const FEED_GET_ITEMS_PAGE = 'FEED_GET_ITEMS_PAGE'
 export const FEED_DELETE = 'FEED_DELETE'
 export const FEED_POST = 'FEED_POST'
 export const FEED_RESET = 'FEED_RESET'
