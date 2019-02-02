@@ -4,7 +4,7 @@
             <v-spacer></v-spacer>
 
             <v-toolbar-items>
-                <v-btn dark flat @click="remove()">Delete</v-btn>
+                <v-btn dark flat @click="toast = true">Delete</v-btn>
             </v-toolbar-items>
         </v-toolbar>
 
@@ -31,6 +31,11 @@
                     </v-flex>
                 </v-layout>
             </v-container>
+
+            <v-snackbar v-model="toast" right color="secondary">
+                Do you want to remove this feed?
+                <v-btn color="accent" flat @click="remove()">Yes</v-btn>
+            </v-snackbar>
         </v-container>
     </v-flex>
 </template>
@@ -52,6 +57,12 @@
       ]).then(() => {
         next()
       })
+    },
+    data () {
+      return {
+        errors: '',
+        toast: false
+      }
     },
     computed: {
       ...mapGetters([

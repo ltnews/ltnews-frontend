@@ -1,31 +1,32 @@
 <template>
-  <v-flex xs12>
-    <v-toolbar dense color="secondary">
-      <v-spacer></v-spacer>
+    <v-flex xs12>
+        <v-toolbar dense color="secondary">
+            <v-spacer></v-spacer>
 
-      <v-toolbar-items>
-        <v-btn dark flat :to="{name: 'SectionEdit', params: {id: sectionDetailSection.id}}">Edit</v-btn>
-        <v-btn dark flat @click="toast = true">Delete</v-btn>
-        <v-btn dark flat :to="{name: 'FeedCreate', params: {title: sectionDetailSection.title}}">Add Feed</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+            <v-toolbar-items>
+                <v-btn dark flat :to="{name: 'SectionEdit', params: {id: sectionDetailSection.id}}">Edit</v-btn>
+                <v-btn dark flat @click="toast = true">Delete</v-btn>
+                <v-btn dark flat :to="{name: 'FeedCreate', params: {title: sectionDetailSection.title}}">Add Feed
+                </v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
 
-    <v-container grid-list-xl>
-      <page-head
-        :title="sectionDetailSection.title"
-        :subtitle="sectionDetailSection.description">
-      </page-head>
+        <v-container grid-list-xl>
+            <page-head
+                    :title="sectionDetailSection.title"
+                    :subtitle="sectionDetailSection.description">
+            </page-head>
 
-      <v-flex>
-        <card-list-feed title="Feeds" :feeds="sectionDetailSection.feeds"></card-list-feed>
-      </v-flex>
+            <v-flex>
+                <card-list-feed title="Feeds" :feeds="sectionDetailSection.feeds"></card-list-feed>
+            </v-flex>
 
-      <v-snackbar v-model="toast" right color="secondary">
-        Do you want to remove this section?
-        <v-btn color="accent" flat @click="remove()">Yes</v-btn>
-      </v-snackbar>
-    </v-container>
-  </v-flex>
+            <v-snackbar v-model="toast" right color="secondary">
+                Do you want to remove this section?
+                <v-btn color="accent" flat @click="remove()">Yes</v-btn>
+            </v-snackbar>
+        </v-container>
+    </v-flex>
 </template>
 
 <script>
@@ -62,8 +63,8 @@
           .then(() => {
             this.$router.push({name: 'SectionList'})
           }).catch(({response}) => {
-            this.errors = `${response.status}: ${response.statusText}`
-          })
+          this.errors = `${response.status}: ${response.statusText}`
+        })
       }
     }
   }
