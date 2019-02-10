@@ -14,23 +14,12 @@
                     :subtitle="feedDetailFeed.description">
             </page-head>
 
-            <v-divider></v-divider>
-
-            <v-container fluid grid-list-sm>
-                <v-layout row wrap>
-                    <v-flex xs12 sm6 lg4 v-for="item in feedDetailItems" :key="item.id">
-                        <card-item :item="item"></card-item>
-                    </v-flex>
-                </v-layout>
-                <v-layout row>
-                    <v-flex xs6>
-                        <v-btn block color="accent" @click="paginate(false)" :disabled="feedDetailPrevious">Previous</v-btn>
-                    </v-flex>
-                    <v-flex xs6>
-                        <v-btn block color="accent" @click="paginate(true)" :disabled="feedDetailNext">Next</v-btn>
-                    </v-flex>
-                </v-layout>
-            </v-container>
+            <card-item-list
+                    :items="feedDetailItems"
+                    :previous="feedDetailPrevious"
+                    :next="feedDetailNext"
+                    action="FEED_GET_ITEMS_PAGE">
+            </card-item-list>
 
             <v-snackbar v-model="toast" right color="secondary">
                 Do you want to remove this feed?
@@ -43,13 +32,13 @@
 <script>
   import {mapGetters} from 'vuex'
   import store from '@/store'
-  import {FEED_GET_ONE, FEED_GET_ITEMS, FEED_DELETE, FEED_GET_ITEMS_PAGE} from '../stores/types'
+  import {FEED_GET_ONE, FEED_GET_ITEMS, FEED_DELETE} from '../stores/types'
   import PageHead from '../components/PageHead'
-  import CardItem from '../components/CardItem'
+  import CardItemList from '../components/CardItemList'
 
   export default {
     name: 'FeedView',
-    components: {PageHead, CardItem},
+    components: {PageHead, CardItemList},
     beforeRouteEnter (to, from, next) {
       Promise.all([
         store.dispatch(FEED_GET_ONE, to.params.id),
@@ -78,12 +67,6 @@
           .then(() => {
             this.$router.push({name: 'SectionList'})
           }).catch(({response}) => {
-          this.errors = `${response.status}: ${response.statusText}`
-        })
-      },
-      paginate (next) {
-        this.$store.dispatch(FEED_GET_ITEMS_PAGE, next)
-          .catch(({response}) => {
           this.errors = `${response.status}: ${response.statusText}`
         })
       }
