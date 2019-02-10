@@ -2,7 +2,7 @@
     <v-container pa-0 fluid grid-list-xl>
         <v-layout row wrap>
             <v-flex xs12 sm6 lg4 v-for="item in items" :key="item.id">
-                <card-item :item="item"></card-item>
+                <card-item :item="item" :show_feed="show_feed"></card-item>
             </v-flex>
         </v-layout>
 
@@ -32,7 +32,8 @@
       items: {type: Array, required: true},
       previous: {type: Boolean, required: true},
       next: {type: Boolean, required: true},
-      action: {type: String, required: true}
+      action: {type: String, required: true},
+      show_feed: {type: Boolean, required: false, default: true},
     },
     data () {
       return {

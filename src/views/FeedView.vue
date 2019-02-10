@@ -15,6 +15,7 @@
             </page-head>
 
             <card-item-list
+                    :show_feed="false"
                     :items="feedDetailItems"
                     :previous="feedDetailPrevious"
                     :next="feedDetailNext"
