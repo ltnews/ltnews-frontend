@@ -50,7 +50,7 @@ const actions = {
     if (next) {
       url = state.items.next;
     } else {
-      url = this.items.previous;
+      url = state.items.previous;
     }
 
     return api.generic_get(url)
