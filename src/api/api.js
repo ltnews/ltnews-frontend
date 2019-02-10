@@ -66,9 +66,8 @@ export default {
   item_get_one (id) {
     return session.get(makeURL(ITEM, id))
   },
-  item_post (id, status) {
-    // TODO: would be PUT
-    return session.post(makeURL(ITEM, id), status)
+  item_put (id, status) {
+    return session.put(makeURL(ITEM, id), status)
   },
   item_get_saved () {
     return session.get(makeURL(ITEM, 'saved'))

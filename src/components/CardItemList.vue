@@ -1,5 +1,5 @@
 <template>
-    <v-container pa-0 fluid grid-list-sm>
+    <v-container pa-0 fluid grid-list-xl>
         <v-layout row wrap>
             <v-flex xs12 sm6 lg4 v-for="item in items" :key="item.id">
                 <card-item :item="item"></card-item>

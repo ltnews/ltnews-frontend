@@ -8,7 +8,7 @@
             </v-toolbar-items>
         </v-toolbar>
 
-        <v-container grid-list-xl>
+        <v-container fluid>
             <page-head
                     :title="feedDetailFeed.title"
                     :subtitle="feedDetailFeed.description">
