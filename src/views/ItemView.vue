@@ -16,21 +16,11 @@
             </v-toolbar-items>
         </v-toolbar>
 
-        <v-parallax :src="itemDetailItem.image">
-            <v-layout
-                    align-center
-                    column
-                    justify-end
-            >
-                <h1 class="display-2 font-weight-thin mb-3" v-text="itemDetailItem.title"></h1>
-                <h4 class="subheading" v-text="itemDetailItem.pubDate"></h4>
-            </v-layout>
-        </v-parallax>
-
         <v-flex xs12>
-            <v-container grid-list-md>
-                <div class="text-xs-justify" v-html="itemDetailItem.article"></div>
-                <p class="text-xs-right" v-text="itemDetailItem.creator"></p>
+            <v-img :src="itemDetailItem.image"></v-img>
+
+            <v-container fluid>
+                <item-display :item="itemDetailItem"></item-display>
 
                 <br>
                 <v-divider></v-divider>
@@ -75,9 +65,11 @@
   import {mapGetters} from 'vuex'
   import store from '@/store'
   import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE, ITEM_PUT} from '../stores/types'
+  import ItemDisplay from '../components/ItemDisplay'
 
   export default {
     name: 'ItemView',
+    components: {ItemDisplay},
     data () {
       return {
         errors: ''
