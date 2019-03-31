@@ -1,7 +1,7 @@
 {
   "name": "ltnews-frontend",
   "version": "0.1.0",
-  "description": "A Vue.js project",
+  "description": "Front-end of LT-News",
   "author": "Andrés M. Jiménez <andresjimenezrios@gmail.com>",
   "private": true,
   "scripts": {
