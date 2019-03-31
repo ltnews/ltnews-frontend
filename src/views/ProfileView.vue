@@ -4,6 +4,7 @@
             <v-spacer></v-spacer>
 
             <v-toolbar-items>
+                <v-btn dark flat :to="{name: 'ProfileImage'}">Image</v-btn>
                 <v-btn dark flat :to="{name: 'ProfileEdit'}">Edit</v-btn>
             </v-toolbar-items>
         </v-toolbar>

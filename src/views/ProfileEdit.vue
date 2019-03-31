@@ -2,8 +2,8 @@
     <v-flex xs12>
         <v-container grid-list-xl>
             <page-head
-                    title="Register"
-                    subtitle="Create Account">
+                    title="Edit Profile"
+                    subtitle="Change the information of your account">
             </page-head>
 
             <p class="error--text" v-if="message" v-text="message"></p>

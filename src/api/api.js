@@ -27,6 +27,9 @@ export default {
   profile_get_one () {
     return session.get(makeURL(PROFILE))
   },
+  profile_put (profile) {
+    return session.put(makeURL(PROFILE), profile)
+  },
   section_get_all () {
     return session.get(makeURL(SECTION))
   },

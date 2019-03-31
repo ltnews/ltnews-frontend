@@ -1,8 +1,8 @@
-import auth from '../api/auth'
+import api from '../api/api'
 
 import {
-  PROFILE_PUT, PROFILE_OLD,
-  RESET_STATE_PROFILE
+  PROFILE_IMAGE_PUT, PROFILE_IMAGE_OLD,
+  RESET_STATE_PROFILE_IMAGE
 } from './types'
 
 function getInitialState () {
@@ -14,20 +14,20 @@ function getInitialState () {
 export const state = getInitialState()
 
 const getters = {
-  profileForm: state => state.profileForm
+  profileImageForm: state => state.profileForm
 }
 
 const actions = {
-  [PROFILE_PUT] ({state}) {
-    return auth.updateAccountDetails(state.profileForm)
+  [PROFILE_IMAGE_PUT] ({state}) {
+    return api.profile_put(state.profileForm)
       .catch((error) => {
         throw new error
       })
   },
-  [PROFILE_OLD] ({commit}) {
-    auth.getAccountDetails()
+  [PROFILE_IMAGE_OLD] ({commit}) {
+    api.profile_get_one()
       .then(({data}) => {
-        commit(RESET_STATE_PROFILE, data)
+        commit(RESET_STATE_PROFILE_IMAGE, data)
       })
       .catch((error) => {
         throw new Error(error)
@@ -36,7 +36,7 @@ const actions = {
 }
 
 const mutations = {
-  [RESET_STATE_PROFILE] (state, profile) {
+  [RESET_STATE_PROFILE_IMAGE] (state, profile) {
     state.profileForm = profile
   }
 }

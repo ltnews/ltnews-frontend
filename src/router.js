@@ -10,6 +10,7 @@ import VerifyEmail from './views/VerifyEmail'
 import Home from './views/Home'
 import ProfileView from './views/ProfileView'
 import ProfileEdit from './views/ProfileEdit'
+import ProfileImage from './views/ProfileImage'
 import SectionList from './views/SectionList'
 import SectionView from './views/SectionView'
 import SectionEdit from './views/SectionEdit'
@@ -118,6 +119,13 @@ export default new Router({
       path: '/profile/edit',
       name: 'ProfileEdit',
       component: ProfileEdit,
+      beforeEnter: requireAuthenticated,
+      props: true
+    },
+    {
+      path: '/profile/image',
+      name: 'ProfileImage',
+      component: ProfileImage,
       beforeEnter: requireAuthenticated,
       props: true
     },
