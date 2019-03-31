@@ -25,7 +25,7 @@ export default {
     return session.get(ROOT_AUTH + 'user/')
   },
   updateAccountDetails (data) {
-    return session.patch(ROOT_AUTH + 'user/', data)
+    return session.put(ROOT_AUTH + 'user/', data)
   },
   verifyAccountEmail (key) {
     return session.post('registration/verify-email/', { key })

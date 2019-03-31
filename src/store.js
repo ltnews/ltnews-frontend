@@ -8,6 +8,7 @@ import auth from './stores/auth'
 import password from './stores/password'
 import signup from './stores/signup'
 import profile from './stores/profile'
+import profileForm from './stores/profileForm'
 import sectionList from './stores/sectionList'
 import sectionDetail from './stores/sectionDetail'
 import feedDetail from './stores/feedDetail'
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     password,
     signup,
     profile,
+    profileForm,
     sectionList,
     sectionDetail,
     feedDetail,
