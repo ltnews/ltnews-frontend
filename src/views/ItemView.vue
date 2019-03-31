@@ -26,35 +26,10 @@
                 <v-divider></v-divider>
                 <br>
 
-                <h2 class="subheading" color="primary">Comments</h2>
-                <v-list>
-                    <template v-for="(comment, index) in itemDetailComments">
-                        <v-list-tile :key="comment.id" avatar>
-                            <v-list-tile-avatar>
-                                <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg">
-                            </v-list-tile-avatar>
-                            <v-list-tile-content>
-                                <v-list-tile-title v-html="comment.pubDate"></v-list-tile-title>
-                                <v-list-tile-sub-title v-html="comment.description"></v-list-tile-sub-title>
-                            </v-list-tile-content>
-                            <v-list-tile-action> <!-- TODO: v-if="comment.user" -->
-                                <v-icon color="error" @click="remove(comment.id, index)">delete</v-icon>
-                            </v-list-tile-action>
-                        </v-list-tile>
 
-                        <v-divider inset :key="comment.id"></v-divider>
-                    </template>
-                </v-list>
-
-                <v-textarea
-                        append-icon="send"
-                        @click:append=submit
-                        box
-                        label="Your comment"
-                        auto-grow
-                        v-model="itemDetailComment.description"
-                ></v-textarea>
-
+                <h2 class="subheading text--primary">Comments</h2>
+                <comment-display :comments="itemDetailComments"></comment-display>
+                <comment-form :comment="itemDetailComment"></comment-form>
 
             </v-container>
         </v-flex>
@@ -63,13 +38,15 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import store from '@/store'
-  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, COMMENT_POST, COMMENT_DELETE, ITEM_PUT} from '../stores/types'
+  import store from '../store'
+  import {ITEM_GET_ONE, ITEM_GET_COMMENTS, ITEM_PUT} from '../stores/types'
   import ItemDisplay from '../components/ItemDisplay'
+  import CommentDisplay from '../components/CommentDisplay'
+  import CommentForm from '../components/CommentForm'
 
   export default {
     name: 'ItemView',
-    components: {ItemDisplay},
+    components: {ItemDisplay, CommentDisplay, CommentForm},
     data () {
       return {
         errors: ''
@@ -91,22 +68,6 @@
       ])
     },
     methods: {
-      submit: function () {
-        this.$store.dispatch(COMMENT_POST)
-          .then(() => {
-            this.errors = ''
-          }).catch(({response}) => {
-          this.errors = `${response.status}: ${response.statusText}`
-        })
-      },
-      remove: function (id, index) {
-        this.$store.dispatch(COMMENT_DELETE, [id, index])
-          .then(() => {
-            this.errors = ''
-          }).catch(({response}) => {
-          this.errors = `${response.status}: ${response.statusText}`
-        })
-      },
       set_status: function (action) {
         this.$store.dispatch(ITEM_PUT, action)
           .then(() => {
