@@ -20,9 +20,16 @@
                 'keywordListKeywords'
             ])
         },
-        mounted() {
-            this.$store.dispatch(ITEM_GET_ONE_KEYWORDS, this.item_id)
-                .catch(({response}) => {this.errors = `${response.status}: ${response.statusText}`})
+        watch: {
+            item_id: {
+                immediate: true,
+                handler(value) {
+                    this.$store.dispatch(ITEM_GET_ONE_KEYWORDS, value)
+                        .catch(({response}) => {
+                            this.errors = `${response.status}: ${response.statusText}`
+                        })
+                }
+            }
         }
     }
 </script>

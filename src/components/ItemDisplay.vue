@@ -40,8 +40,13 @@
         }
       }
     },
-    mounted() {
-        this.article = this.item.description_html;
+    watch: {
+      item: {
+        immediate: true,
+        handler(value) {
+          this.article = value.description_html;
+        }
+      }
     }
   }
 </script>

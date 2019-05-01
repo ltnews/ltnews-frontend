@@ -24,11 +24,16 @@
                 'itemSimilarityListKeywords'
             ])
         },
-        mounted() {
-            this.$store.dispatch(ITEM_GET_ONE_SIMILARITY, this.item_id)
-                .catch(({response}) => {
-                    this.errors = `${response.status}: ${response.statusText}`
-                })
+        watch: {
+            item_id: {
+                immediate: true,
+                handler(value) {
+                    this.$store.dispatch(ITEM_GET_ONE_SIMILARITY, value)
+                        .catch(({response}) => {
+                            this.errors = `${response.status}: ${response.statusText}`
+                        })
+                }
+            }
         }
     }
 </script>
