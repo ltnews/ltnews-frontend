@@ -22,9 +22,13 @@
             <v-container fluid>
                 <item-display :item="itemDetailItem"></item-display>
 
-                <br>
-                <v-divider></v-divider>
-                <br>
+                <br><v-divider></v-divider>
+
+                <h2 class="mt-2 subheading text--primary">Keywords</h2>
+
+                <keyword-list :item_id="itemDetailItem.id"></keyword-list>
+
+                <br><v-divider></v-divider><br>
 
 
                 <h2 class="subheading text--primary">Comments</h2>
@@ -43,10 +47,11 @@
   import ItemDisplay from '../components/ItemDisplay'
   import CommentDisplay from '../components/CommentDisplay'
   import CommentForm from '../components/CommentForm'
+  import KeywordList from '../components/KeywordList'
 
   export default {
     name: 'ItemView',
-    components: {ItemDisplay, CommentDisplay, CommentForm},
+    components: {ItemDisplay, CommentDisplay, CommentForm, KeywordList},
     data () {
       return {
         errors: ''

@@ -27,7 +27,7 @@
   export default {
     name: 'CommentDisplay',
     props: {
-      comments: {type: Object, required: true}
+      comments: {type: Array, required: true}
     },
     filters: {
       formatDate: function (date) {

@@ -69,6 +69,12 @@ export default {
   item_get_one (id) {
     return session.get(makeURL(ITEM, id))
   },
+  item_get_one_similarity (id) {
+    return session.get(makeURL(ITEM, id, 'similarity'))
+  },
+  item_get_one_keywords (id) {
+    return session.get(makeURL(ITEM, id, 'keywords'))
+  },
   item_put (id, status) {
     return session.put(makeURL(ITEM, id), status)
   },
