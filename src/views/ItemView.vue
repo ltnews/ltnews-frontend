@@ -22,14 +22,17 @@
             <v-container fluid>
                 <item-display :item="itemDetailItem"></item-display>
 
-                <br><v-divider></v-divider>
+                <v-divider class="mt-3 mb-2"></v-divider>
 
-                <h2 class="mt-2 subheading text--primary">Keywords</h2>
-
+                <h2 class="subheading text--primary">Keywords</h2>
                 <keyword-list :item_id="itemDetailItem.id"></keyword-list>
 
-                <br><v-divider></v-divider><br>
+                <v-divider class="mt-3 mb-2"></v-divider>
 
+                <h2 class="subheading text--primary mb-2">Similarity news</h2>
+                <item-similarity-list :item_id="itemDetailItem.id"></item-similarity-list>
+
+                <v-divider class="mt-3 mb-2"></v-divider>
 
                 <h2 class="subheading text--primary">Comments</h2>
                 <comment-display :comments="itemDetailComments"></comment-display>
@@ -48,10 +51,11 @@
   import CommentDisplay from '../components/CommentDisplay'
   import CommentForm from '../components/CommentForm'
   import KeywordList from '../components/KeywordList'
+  import ItemSimilarityList from '../components/ItemSimilarityList'
 
   export default {
     name: 'ItemView',
-    components: {ItemDisplay, CommentDisplay, CommentForm, KeywordList},
+    components: {ItemDisplay, CommentDisplay, CommentForm, KeywordList, ItemSimilarityList},
     data () {
       return {
         errors: ''
@@ -65,6 +69,14 @@
         next()
       })
     },
+      beforeRouteUpdate  (to, from, next) {
+          Promise.all([
+              store.dispatch(ITEM_GET_ONE, to.params.id),
+              store.dispatch(ITEM_GET_COMMENTS, to.params.id)
+          ]).then(() => {
+              next()
+          })
+      },
     computed: {
       ...mapGetters([
         'itemDetailItem',

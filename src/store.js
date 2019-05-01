@@ -17,6 +17,7 @@ import feedForm from './stores/feedForm'
 import itemList from './stores/itemList'
 import itemDetail from './stores/itemDetail'
 import keywordList from './stores/keywordList'
+import itemSimilarityList from './stores/itemSimilarityList'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -34,7 +35,8 @@ export default new Vuex.Store({
     feedForm,
     itemList,
     itemDetail,
-    keywordList
+    keywordList,
+    itemSimilarityList
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

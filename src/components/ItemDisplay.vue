@@ -23,7 +23,7 @@
     },
     data () {
       return {
-        article: this.item.description_html
+        article: ''
       }
     },
     computed: {
@@ -39,6 +39,9 @@
           this.article = this.item.article_html
         }
       }
+    },
+    mounted() {
+        this.article = this.item.description_html;
     }
   }
 </script>
