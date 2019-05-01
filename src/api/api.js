@@ -78,6 +78,9 @@ export default {
   item_put (id, status) {
     return session.put(makeURL(ITEM, id), status)
   },
+  item_search (params) {
+    return session.get(makeURL(ITEM, 'search'), {params: params})
+  },
   item_get_saved () {
     return session.get(makeURL(ITEM, 'saved'))
   },

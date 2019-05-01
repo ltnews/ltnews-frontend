@@ -19,6 +19,7 @@ import FeedCreate from './views/FeedCreate'
 import ItemList from './views/ItemList'
 import ItemView from './views/ItemView'
 import ItemSaved from './views/ItemSaved'
+import ItemSearch from './views/ItemSearch'
 
 import store from './store'
 import {LOGIN_INIT, LOGOUT} from './stores/types'
@@ -174,6 +175,13 @@ export default new Router({
       path: '/item/saved',
       name: 'ItemSaved',
       component: ItemSaved,
+      beforeEnter: requireAuthenticated,
+      props: true
+    },
+    {
+      path: '/item/search',
+      name: 'ItemSearch',
+      component: ItemSearch,
       beforeEnter: requireAuthenticated,
       props: true
     },

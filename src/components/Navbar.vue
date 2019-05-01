@@ -41,7 +41,7 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title><router-link to="/" class="toolbar-title" v-text="title"></router-link></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon><v-icon>search</v-icon></v-btn>
+      <v-btn icon :to="{name: 'ItemSearch'}"><v-icon>search</v-icon></v-btn>
       <v-btn icon :to="{name: 'ProfileView'}"><v-icon>settings</v-icon></v-btn>
     </v-toolbar>
   </div>
