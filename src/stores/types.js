@@ -87,6 +87,7 @@ export const ITEM_GET_ONE = 'ITEM_GET_ONE'
 export const ITEM_GET_SAVED = 'ITEM_GET_SAVED'
 export const ITEM_GET_COMMENTS = 'ITEM_GET_COMMENTS'
 
+export const ITEM_RECOMMEND = 'ITEM_RECOMMEND';
 export const ITEM_SEARCH = 'ITEM_SEARCH';
 export const ITEM_LIST_RESET = 'ITEM_LIST_RESET';
 

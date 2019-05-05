@@ -19,6 +19,7 @@ import FeedCreate from './views/FeedCreate'
 import ItemList from './views/ItemList'
 import ItemView from './views/ItemView'
 import ItemSaved from './views/ItemSaved'
+import ItemRecommend from './views/ItemRecommend'
 import ItemSearch from './views/ItemSearch'
 
 import store from './store'
@@ -168,6 +169,13 @@ export default new Router({
       path: '/item/list',
       name: 'ItemList',
       component: ItemList,
+      beforeEnter: requireAuthenticated,
+      props: true
+    },
+    {
+      path: '/item/recommend',
+      name: 'ItemRecommend',
+      component: ItemRecommend,
       beforeEnter: requireAuthenticated,
       props: true
     },

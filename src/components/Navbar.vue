@@ -65,6 +65,11 @@
           link: {name: 'SectionList'},
           auth: true
         }, {
+          icon: 'star',
+          title: 'Recommended',
+          link: {name: 'ItemRecommend'},
+          auth: true
+        }, {
           icon: 'saved',
           title: 'Saved',
           link: {name: 'ItemSaved'},
