@@ -34,7 +34,10 @@
                         <v-divider></v-divider>
                         <v-card-text>
                             <template v-for="(keyword, index) in profile.keywords">
-                                <v-chip :key="index" outline color="primary">{{keyword}}</v-chip>
+
+                                <router-link :key="index" :to="{name: 'ItemQuery', params: {query: keyword}}">
+                                    <v-chip outline color="primary">{{keyword}}</v-chip>
+                                </router-link>
                             </template>
                         </v-card-text>
                     </v-card>
@@ -66,5 +69,7 @@
 </script>
 
 <style scoped>
-
+a {
+    text-decoration: none;
+}
 </style>

@@ -1,7 +1,9 @@
 <template>
     <div class="text-xs-center">
         <template  v-for="(keyword, index) in keywordListKeywords">
-            <v-chip :key="index" outline color="primary">{{keyword}}</v-chip>
+            <router-link :key="index" :to="{name: 'ItemQuery', params: {query: keyword}}">
+                <v-chip outline color="primary">{{keyword}}</v-chip>
+            </router-link>
         </template>
     </div>
 </template>
@@ -35,5 +37,7 @@
 </script>
 
 <style scoped>
-
+a {
+    text-decoration: none;
+}
 </style>

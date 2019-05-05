@@ -78,6 +78,9 @@ export default {
   item_put (id, status) {
     return session.put(makeURL(ITEM, id), status)
   },
+  item_query (query) {
+    return session.get(makeURL(ITEM, 'query', query))
+  },
   item_recommend () {
     return session.get(makeURL(ITEM, 'recommend'))
   },

@@ -1,7 +1,7 @@
 import api from '../api/api'
 
 import {
-    ITEM_GET_ALL, ITEM_GET_SAVED, ITEM_RECOMMEND, ITEM_GET_ITEMS_PAGE, ITEM_SEARCH, ITEM_LIST_RESET,
+    ITEM_GET_ALL, ITEM_GET_SAVED, ITEM_QUERY, ITEM_RECOMMEND, ITEM_GET_ITEMS_PAGE, ITEM_SEARCH, ITEM_LIST_RESET,
     FETCH_START_ITEMS, FETCH_END_ITEMS
 } from './types'
 
@@ -56,6 +56,16 @@ const actions = {
     [ITEM_GET_SAVED]({commit}) {
         commit(FETCH_START_ITEMS);
         return api.item_get_saved()
+            .then(({data}) => {
+                commit(FETCH_END_ITEMS, data)
+            })
+            .catch((error) => {
+                throw new Error(error)
+            })
+    },
+    [ITEM_QUERY]({commit}, query) {
+        commit(FETCH_START_ITEMS);
+        return api.item_query(query)
             .then(({data}) => {
                 commit(FETCH_END_ITEMS, data)
             })
