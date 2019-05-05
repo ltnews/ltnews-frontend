@@ -31,6 +31,12 @@
                             <v-flex tag="strong" sm6 text-xs-right mr-3 mb-2>Date joined:</v-flex>
                             <v-flex>{{ profile.user.date_joined | moment }}</v-flex>
                         </v-layout>
+                        <v-divider></v-divider>
+                        <v-card-text>
+                            <template v-for="(keyword, index) in profile.keywords">
+                                <v-chip :key="index" outline color="primary">{{keyword}}</v-chip>
+                            </template>
+                        </v-card-text>
                     </v-card>
                 </v-flex>
             </v-layout>
@@ -39,24 +45,24 @@
 </template>
 
 <script>
-  import moment from 'moment'
-  import {mapGetters} from 'vuex'
-  import PageHead from '../components/PageHead'
+    import moment from 'moment'
+    import {mapGetters} from 'vuex'
+    import PageHead from '../components/PageHead'
 
-  export default {
-    name: 'ProfileView',
-    components: {PageHead},
-    computed: {
-      ...mapGetters({
-        profile: 'getProfile'
-      })
-    },
-    filters: {
-      moment: function (date) {
-        return moment(date).format('MMMM Do YYYY, h:mm:ss a')
-      }
+    export default {
+        name: 'ProfileView',
+        components: {PageHead},
+        computed: {
+            ...mapGetters({
+                profile: 'getProfile'
+            })
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('MMMM Do YYYY, h:mm:ss a')
+            }
+        }
     }
-  }
 </script>
 
 <style scoped>
