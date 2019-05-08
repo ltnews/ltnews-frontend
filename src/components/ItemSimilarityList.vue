@@ -1,7 +1,7 @@
 <template>
     <v-container pa-0 fluid grid-list-md>
         <v-layout row wrap>
-            <v-flex xs12 sm4 v-for="item in itemSimilarityListKeywords" :key="item.id">
+            <v-flex xs12 sm4 v-for="item in itemSimilarityListItems" :key="item.id">
                 <card-item :item="item"></card-item>
             </v-flex>
         </v-layout>
@@ -21,7 +21,7 @@
         },
         computed: {
             ...mapGetters([
-                'itemSimilarityListKeywords'
+                'itemSimilarityListItems'
             ])
         },
         watch: {

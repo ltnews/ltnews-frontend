@@ -18,6 +18,7 @@ import itemList from './stores/itemList'
 import itemDetail from './stores/itemDetail'
 import keywordList from './stores/keywordList'
 import itemSimilarityList from './stores/itemSimilarityList'
+import itemSummary from './stores/itemSummary'
 
 const debug = process.env.NODE_ENV !== 'production'
 
@@ -36,7 +37,8 @@ export default new Vuex.Store({
     itemList,
     itemDetail,
     keywordList,
-    itemSimilarityList
+    itemSimilarityList,
+    itemSummary
   },
   strict: debug,
   plugins: debug ? [createLogger()] : []

@@ -22,6 +22,7 @@ import ItemSaved from './views/ItemSaved'
 import ItemQuery from './views/ItemQuery'
 import ItemRecommend from './views/ItemRecommend'
 import ItemSearch from './views/ItemSearch'
+import ItemSummary from './views/ItemSummary'
 
 import store from './store'
 import {LOGIN_INIT, LOGOUT} from './stores/types'
@@ -198,6 +199,13 @@ export default new Router({
       path: '/item/search',
       name: 'ItemSearch',
       component: ItemSearch,
+      beforeEnter: requireAuthenticated,
+      props: true
+    },
+    {
+      path: '/item/summary',
+      name: 'ItemSummary',
+      component: ItemSummary,
       beforeEnter: requireAuthenticated,
       props: true
     },

@@ -90,6 +90,9 @@ export default {
   item_get_saved () {
     return session.get(makeURL(ITEM, 'saved'))
   },
+  item_summary (params) {
+    return session.get(makeURL(ITEM, 'summary'), {params: params})
+  },
   comment_get_all (id) {
     return session.get(makeURL(ITEM, id, plural(COMMENT)))
   },

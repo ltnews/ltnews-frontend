@@ -70,6 +70,11 @@
           link: {name: 'ItemRecommend'},
           auth: true
         }, {
+          icon: 'assessment',
+          title: 'Summary',
+          link: {name: 'ItemSummary'},
+          auth: true
+        }, {
           icon: 'saved',
           title: 'Saved',
           link: {name: 'ItemSaved'},
